@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\test\gtest\src\gtest-all.cc">
+      <Filter>gtest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\gtest\src\gtest_main.cc">
+      <Filter>gtest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\Test_Math.cpp" />
+    <ClCompile Include="..\..\test\Test_Vector2.cpp" />
+    <ClCompile Include="..\..\test\Test_Quaternion.cpp" />
+    <ClCompile Include="..\..\test\Test_Matrix.cpp" />
+    <ClCompile Include="..\..\test\Test_SQTTransform.cpp" />
+    <ClCompile Include="..\..\test\Test_Plane.cpp" />
+    <ClCompile Include="..\..\test\Test_Vector4.cpp" />
+    <ClCompile Include="..\..\test\Test_Vector3.cpp" />
+    <ClCompile Include="..\..\test\Test_ViewFrustum.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="gtest">
+      <UniqueIdentifier>{5934488f-7a43-4de3-9ffe-e9d83829e08c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\test\TestConfig.h" />
+  </ItemGroup>
+</Project>

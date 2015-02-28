@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Math\MathUtils.cpp" />
+    <ClCompile Include="..\..\src\Math\Matrix.cpp" />
+    <ClCompile Include="..\..\src\Math\Plane.cpp" />
+    <ClCompile Include="..\..\src\Math\Quaternion.cpp" />
+    <ClCompile Include="..\..\src\Math\Random.cpp" />
+    <ClCompile Include="..\..\src\Math\SQTTransform.cpp" />
+    <ClCompile Include="..\..\src\Math\Vector2.cpp" />
+    <ClCompile Include="..\..\src\Math\Vector3.cpp" />
+    <ClCompile Include="..\..\src\Math\Vector4.cpp" />
+    <ClCompile Include="..\..\src\Math\ViewFrustum.cpp" />
+    <ClCompile Include="..\..\src\Math\Version.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Math\Asm.h" />
+    <ClInclude Include="..\..\include\Lumino\Math\MathUtils.h" />
+    <ClInclude Include="..\..\include\Lumino\Math\Matrix.h" />
+    <ClInclude Include="..\..\include\Lumino\Math\Plane.h" />
+    <ClInclude Include="..\..\include\Lumino\Math\Quaternion.h" />
+    <ClInclude Include="..\..\include\Lumino\Math\Random.h" />
+    <ClInclude Include="..\..\include\Lumino\Math\SQTTransform.h" />
+    <ClInclude Include="..\..\include\Lumino\Math\Vector2.h" />
+    <ClInclude Include="..\..\include\Lumino\Math\Vector3.h" />
+    <ClInclude Include="..\..\include\Lumino\Math\Vector4.h" />
+    <ClInclude Include="..\..\include\Lumino\Math\Common.h" />
+    <ClInclude Include="..\..\include\Lumino\Math\ViewFrustum.h" />
+    <ClInclude Include="..\..\include\LuminoMath.h" />
+    <ClInclude Include="..\..\include\LuminoMathDxLib.h" />
+    <ClInclude Include="..\..\include\Lumino\Math\Version.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\include\Lumino\Math\Matrix.inl" />
+    <None Include="..\..\include\Lumino\Math\Plane.inl" />
+    <None Include="..\..\include\Lumino\Math\Quaternion.inl" />
+    <None Include="..\..\include\Lumino\Math\Vector2.inl" />
+    <None Include="..\..\include\Lumino\Math\Vector3.inl" />
+    <None Include="..\..\include\Lumino\Math\Vector4.inl" />
+  </ItemGroup>
+</Project>
