@@ -1,46 +1,62 @@
+# Note:
+#	CMake Useful Variables
+#	http://www.cmake.org/Wiki/CMake_Useful_Variables
+#
+# Debug build on Command line.
+# $ cmake -DCMAKE_BUILD_TYPE=Debug ..
+#
+
 cmake_minimum_required (VERSION 2.8)
 project (LuminoMath)
 
-set(LN_STATIC_LIB_OUTPUT_NAME "LuminoMath")
 set(LN_UNIT_TEST_LINK_LIBS "")
 
 #------------------------------------------------------------------------------
 # Options
 #------------------------------------------------------------------------------
-# Unicode char set.
-#option(USING_UNICODE_CHAR_SET "Use unicode char set." ON)
 
 # MSVC Runtime library.
-option(MSVC_LINK_MULTI_THREAD_STATIC_RUNTIME "static runtime (/MT, /MTd) or DLL runtime (/MD, /MDd) or to link either." ON)
+option(LN_MSVC_LINK_MULTI_THREAD_STATIC_RUNTIME "static runtime (/MT, /MTd) or DLL runtime (/MD, /MDd) or to link either." ON)
 
 #------------------------------------------------------------------------------
 # Apply options
 #------------------------------------------------------------------------------
-# Unicode char set.
-#if (USING_UNICODE_CHAR_SET)
-#	add_definitions(-DUNICODE)
-#	add_definitions(-D_UNICODE)
-#endif()
 
 if (WIN32)
-	# MSVC Version name
+	#------------------------------------------------------
+	# Make static lib name.
+	#	{ProjectName}_{msvcVer}{Arch}_static_{Runtime}
+	#	e.g)	LuminoMath_msvc120x86_static_MTd.lib
+	
+	set(LN_STATIC_LIB_OUTPUT_NAME ${CMAKE_PROJECT_NAME})
+	
 	if (MSVC_VERSION EQUAL 1400)
-		string(CONCAT LN_STATIC_LIB_OUTPUT_NAME ${LN_STATIC_LIB_OUTPUT_NAME} "-msvc80")
+		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_msvc80")
 	elseif (MSVC_VERSION EQUAL 1500)
-		string(CONCAT LN_STATIC_LIB_OUTPUT_NAME ${LN_STATIC_LIB_OUTPUT_NAME} "-msvc90")
+		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_msvc90")
 	elseif (MSVC_VERSION EQUAL 1600)
-		string(CONCAT LN_STATIC_LIB_OUTPUT_NAME ${LN_STATIC_LIB_OUTPUT_NAME} "-msvc100")
+		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_msvc100")
 	elseif (MSVC_VERSION EQUAL 1700)
-		string(CONCAT LN_STATIC_LIB_OUTPUT_NAME ${LN_STATIC_LIB_OUTPUT_NAME} "-msvc110")
+		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_msvc110")
 	elseif (MSVC_VERSION EQUAL 1800)
-		string(CONCAT LN_STATIC_LIB_OUTPUT_NAME ${LN_STATIC_LIB_OUTPUT_NAME} "-msvc120")
+		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_msvc120")
 	endif()
 	
-	# MSVC Runtime library.
-	if (MSVC_MULTI_THREAD_DLL_RUNTIME)
-		#string(CONCAT LN_STATIC_LIB_OUTPUT_NAME ${LN_STATIC_LIB_OUTPUT_NAME} "-MD")
+	# Architecture.
+	# http://stackoverflow.com/questions/5334095/cmake-multiarchitecture-compilation
+	if (${CMAKE_EXE_LINKER_FLAGS} MATCHES "/machine:x64")	# /machine:x64 
+		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}x64")
 	else()
-		#string(CONCAT LN_STATIC_LIB_OUTPUT_NAME ${LN_STATIC_LIB_OUTPUT_NAME} "-MT")
+		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}x86")
+	endif()
+	
+	set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_static")
+	
+	# MSVC Runtime library.
+	if (LN_MSVC_LINK_MULTI_THREAD_STATIC_RUNTIME)
+		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_MD")
+	else()
+		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_MT")
 		# Overwrite options.
 		foreach (flag
 			CMAKE_C_FLAGS
@@ -57,25 +73,29 @@ if (WIN32)
 			endif()
 		endforeach()
 	endif()
+	set(CMAKE_DEBUG_POSTFIX "d")
+	# end   Make static lib name.
+	#------------------------------------------------------
 
 elseif (APPLE)
-	set(LN_UNIT_TEST_LINK_LIBS "pthread")
+	set(LN_STATIC_LIB_OUTPUT_NAME ${CMAKE_PROJECT_NAME})
+	set(CMAKE_DEBUG_POSTFIX "_d")
 	
 elseif (UNIX)
-	set(LN_UNIT_TEST_LINK_LIBS "pthread")
+	set(LN_STATIC_LIB_OUTPUT_NAME ${CMAKE_PROJECT_NAME})
+	set(CMAKE_DEBUG_POSTFIX "_d")
 	
 else()
 	# Not support.
     message(FATAL_ERROR "No supported platform was detected.")
 endif()
 
-
-
 #------------------------------------------------------------------------------
 # Files
 #------------------------------------------------------------------------------
+#--------------------------------------
 # Header files.
-set(LN_MATH_HEADERS
+set(LN_HEADER_FILES
 	include/LuminoMath.h
 	include/Lumino/Math/Quaternion.inl
 	include/Lumino/Math/Random.h
@@ -94,8 +114,9 @@ set(LN_MATH_HEADERS
 	include/Lumino/Math/Plane.inl
 	include/Lumino/Math/Quaternion.h)
 
+#--------------------------------------
 # Source files.
-set(LN_MATH_SOURCES
+set(LN_SOURCE_FILES
 	src/Math/Random.cpp
 	src/Math/SQTTransform.cpp
 	src/Math/Vector2.cpp
@@ -109,23 +130,22 @@ set(LN_MATH_SOURCES
 #------------------------------------------------------------------------------
 # Output
 #------------------------------------------------------------------------------
-#if (NOT LN_EXTERNAL)
-
+#--------------------------------------
 # Static library.
-set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}-static")
-add_library(LuminoMath_Static STATIC ${LN_MATH_SOURCES} ${LN_MATH_HEADERS})
+set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}")
+add_library(LuminoMath_Static STATIC ${LN_SOURCE_FILES} ${LN_HEADER_FILES})
 set_target_properties(LuminoMath_Static PROPERTIES OUTPUT_NAME ${LN_STATIC_LIB_OUTPUT_NAME})
-set_target_properties(LuminoMath_Static PROPERTIES DEBUG_POSTFIX "_d")
 add_custom_command(
 	TARGET LuminoMath_Static
 	POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:LuminoMath_Static> "${PROJECT_SOURCE_DIR}/lib")
 
+#--------------------------------------
 # Shared library.
-add_library(LuminoMath_Shared SHARED ${LN_MATH_SOURCES} ${LN_MATH_HEADERS})
+add_library(LuminoMath_Shared SHARED ${LN_SOURCE_FILES} ${LN_HEADER_FILES})
 set_target_properties(LuminoMath_Shared PROPERTIES OUTPUT_NAME "LuminoMath")
-set_target_properties(LuminoMath_Shared PROPERTIES DEBUG_POSTFIX "_d")
-set_target_properties (LuminoMath_Shared PROPERTIES COMPILE_DEFINITIONS "LUMINO_BUILD_DLL")
+set_target_properties(LuminoMath_Shared PROPERTIES COMPILE_DEFINITIONS "LUMINO_BUILD_DLL")
+set_target_properties(LuminoMath_Shared PROPERTIES DEBUG_POSTFIX "_d")		# Invalid CMake 2.8.7 (Ubuntu12.04).  Use "set(CMAKE_DEBUG_POSTFIX "_d")" Instand
 add_custom_command(
 	TARGET LuminoMath_Shared
 	POST_BUILD
@@ -135,41 +155,6 @@ add_custom_command(
 	POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_LINKER_FILE:LuminoMath_Shared> "${PROJECT_SOURCE_DIR}/lib")
 
+#--------------------------------------
 # Unit test.
-add_executable(
-	UnitTest
-	test/gtest/src/gtest-all.cc
-	test/gtest/src/gtest_main.cc
-	test/Test_Vector4.cpp
-	test/Test_Math.cpp
-	test/Test_Matrix.cpp
-	test/Test_Plane.cpp
-	test/Test_Quaternion.cpp
-	test/Test_SQTTransform.cpp
-	test/Test_Vector2.cpp
-	test/Test_Vector3.cpp)
-	
-set(LIST_OF_DIRECTORIES
-	"${PROJECT_SOURCE_DIR}/include"
-	"${PROJECT_SOURCE_DIR}/test/gtest/include"
-	"${PROJECT_SOURCE_DIR}/test/gtest")
-set_target_properties(
-	UnitTest
-	PROPERTIES INCLUDE_DIRECTORIES
-	"${LIST_OF_DIRECTORIES}")
-	
-#set(my_definitions 
-set_target_properties(UnitTest PROPERTIES COMPILE_DEFINITIONS "GTEST_HAS_TR1_TUPLE=0")
-	
-#GTEST_HAS_TR1_TUPLE=0
-
-#target_include_directories(
-#	UnitTest
-#	PUBLIC include
-#	PUBLIC test/gtest/include
-#	PUBLIC test/gtest)
-target_link_libraries(UnitTest LuminoMath_Static ${LN_UNIT_TEST_LINK_LIBS})
-add_dependencies(UnitTest LuminoMath_Static)
-
-# samples.
-#add_subdirectory(sample)
+add_subdirectory(test)
