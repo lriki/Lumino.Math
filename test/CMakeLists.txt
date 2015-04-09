@@ -38,9 +38,9 @@ add_dependencies(${PROJECT_NAME} LuminoMath_Static)
 
 if (WIN32)
 elseif (APPLE)
-	link_libraries(LN_UNIT_TEST_LINK_LIBS "pthread")	# for gtest.
+	link_libraries("pthread")	# for gtest.
 elseif (UNIX)
-	link_libraries(LN_UNIT_TEST_LINK_LIBS "pthread")	# for gtest.
+	link_libraries("pthread")	# for gtest.
 else()
 	# Not support.
     message(FATAL_ERROR "No supported platform was detected.")
