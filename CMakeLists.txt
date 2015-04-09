@@ -9,6 +9,7 @@
 cmake_minimum_required (VERSION 2.8)
 project (LuminoMath)
 
+set(LN_STATIC_LIB_OUTPUT_NAME ${PROJECT_NAME})
 set(LN_UNIT_TEST_LINK_LIBS "")
 
 #------------------------------------------------------------------------------
@@ -27,9 +28,6 @@ if (WIN32)
 	# Make static lib name.
 	#	{ProjectName}_{msvcVer}{Arch}_static_{Runtime}
 	#	e.g)	LuminoMath_msvc120x86_static_MTd.lib
-	
-	set(LN_STATIC_LIB_OUTPUT_NAME ${CMAKE_PROJECT_NAME})
-	
 	if (MSVC_VERSION EQUAL 1400)
 		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_msvc80")
 	elseif (MSVC_VERSION EQUAL 1500)
@@ -54,8 +52,6 @@ if (WIN32)
 	
 	# MSVC Runtime library.
 	if (LN_MSVC_LINK_MULTI_THREAD_STATIC_RUNTIME)
-		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_MD")
-	else()
 		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_MT")
 		# Overwrite options.
 		foreach (flag
@@ -72,6 +68,8 @@ if (WIN32)
 				string(REGEX REPLACE "/MDd" "/MTd" ${flag} "${${flag}}")
 			endif()
 		endforeach()
+	else()
+		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_MD")
 	endif()
 	set(CMAKE_DEBUG_POSTFIX "d")
 	# end   Make static lib name.
