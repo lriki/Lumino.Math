@@ -31,18 +31,18 @@ include_directories(
 	${PROJECT_SOURCE_DIR}/../include
 	${PROJECT_SOURCE_DIR}/gtest/include
 	${PROJECT_SOURCE_DIR}/gtest)
-add_definitions(-DGTEST_HAS_TR1_TUPLE=0)		# gtest avoidance of problem.
-link_libraries(LuminoMath_Static)
-add_executable(${PROJECT_NAME} ${LN_SOURCE_FILES})
-add_dependencies(${PROJECT_NAME} LuminoMath_Static)
 
+set(LN_TEST_LIBS LuminoMath_Static)
 if (WIN32)
 elseif (APPLE)
-	link_libraries("pthread")	# for gtest.
+	list(APPEND LN_TEST_LIBS "pthread")	# for gtest.
 elseif (UNIX)
-	link_libraries("pthread")	# for gtest.
+	list(APPEND LN_TEST_LIBS "pthread")	# for gtest.
 else()
-	# Not support.
-    message(FATAL_ERROR "No supported platform was detected.")
 endif()
+link_libraries(${LN_TEST_LIBS})
+
+add_definitions(-DGTEST_HAS_TR1_TUPLE=0)		# gtest avoidance of problem.
+add_executable(${PROJECT_NAME} ${LN_SOURCE_FILES})
+add_dependencies(${PROJECT_NAME} LuminoMath_Static)
 
