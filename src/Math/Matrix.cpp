@@ -1641,6 +1641,30 @@ Matrix Matrix::OrthoRH(float width, float height, float near, float far)
 //-----------------------------------------------------------------------------
 // static
 //-----------------------------------------------------------------------------
+Matrix Matrix::Perspective2DLH(float width, float height, float near, float far)
+{
+	return Matrix(
+		2.0f / width, 0.0f, 0.0f, 0.0f,
+		0.0f, -2.0f / height, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f / (far - near), 0.0f,
+		-1.0f, 1.0f, near / (near - far), 1.0f);
+}
+
+//-----------------------------------------------------------------------------
+// static
+//-----------------------------------------------------------------------------
+Matrix Matrix::Perspective2DRH(float width, float height, float near, float far)
+{
+	return Matrix(
+		2.0f / width, 0.0f, 0.0f, 0.0f,
+		0.0f, -2.0f / height, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f / (near - far), 0.0f,
+		-1.0f, 1.0f, near / (near - far), 1.0f);
+}
+
+//-----------------------------------------------------------------------------
+// static
+//-----------------------------------------------------------------------------
 Matrix Matrix::AffineTransformation(const Vector3& scaling, const Vector3& rotationCenter, const Quaternion& rotation, const Vector3& translation)
 {
 	Matrix m = Matrix::Scaling(scaling);

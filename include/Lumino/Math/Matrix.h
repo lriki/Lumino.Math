@@ -427,7 +427,7 @@ public:
 	static Matrix LookAtRH(const Vector3& position, const Vector3& lookAt, const Vector3& up);
 
 	/**
-		@brief		右手座標系パースペクティブ射影行列を作成します。
+		@brief		左手座標系パースペクティブ射影行列を作成します。
 		@param[in]  fovY		: Y 方向への視野角 (ラジアン単位)
 		@param[in]  aspect		: アスペクト比 (横幅/高さ)
 		@param[in]  near		: 近いビュー平面の Z 値
@@ -447,7 +447,7 @@ public:
 	static Matrix PerspectiveFovRH(float fovY, float aspect, float near, float far);
 
 	/**
-		@brief		右手座標系正射影行列を作成します。
+		@brief		左手座標系正射影行列を作成します。
 		@param[in]  width		: スクリーンの幅
 		@param[in]  height		: スクリーンの高さ
 		@param[in]  near		: 一番近いビュー平面の Z 値
@@ -465,6 +465,28 @@ public:
 		@return		演算結果の行列
 	*/
 	static Matrix OrthoRH(float width, float height, float near, float far);
+	
+	/**
+		@brief		2D 座標系用の左手座標系正射影行列を作成します。
+		@param[in]  width		: スクリーンの幅
+		@param[in]  height		: スクリーンの高さ
+		@param[in]  near		: 一番近いビュー平面の Z 値
+		@param[in]  far			: 一番遠いビュー平面の Z 値
+		@return		演算結果の行列
+		@details	ビューの左上を原点とし、右方向を X+、下方向を Y+、手前方向を Z+ とします。
+	*/
+	static Matrix Perspective2DLH(float width, float height, float near, float far);
+	
+	/**
+		@brief		2D 座標系用の右手座標系正射影行列を作成します。
+		@param[in]  width		: スクリーンの幅
+		@param[in]  height		: スクリーンの高さ
+		@param[in]  near		: 一番近いビュー平面の Z 値
+		@param[in]  far			: 一番遠いビュー平面の Z 値
+		@return		演算結果の行列
+		@details	ビューの左上を原点とし、右方向を X+、下方向を Y+、奥方向を Z+ とします。
+	*/
+	static Matrix Perspective2DRH(float width, float height, float near, float far);
 
 	/**
 		@brief		アフィン変換行列を作成します。
