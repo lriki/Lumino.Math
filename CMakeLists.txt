@@ -136,7 +136,7 @@ set_target_properties(LuminoMath_Static PROPERTIES OUTPUT_NAME ${LN_STATIC_LIB_O
 add_custom_command(
 	TARGET LuminoMath_Static
 	POST_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:LuminoMath_Static> "${PROJECT_SOURCE_DIR}/lib")
+	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:LuminoMath_Static> "${CMAKE_SOURCE_DIR}/lib")
 
 #--------------------------------------
 # Shared library.
@@ -147,11 +147,11 @@ set_target_properties(LuminoMath_Shared PROPERTIES DEBUG_POSTFIX "_d")		# Invali
 add_custom_command(
 	TARGET LuminoMath_Shared
 	POST_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:LuminoMath_Shared> "${PROJECT_SOURCE_DIR}/lib")
+	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:LuminoMath_Shared> "${CMAKE_SOURCE_DIR}/lib")
 add_custom_command(
 	TARGET LuminoMath_Shared
 	POST_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_LINKER_FILE:LuminoMath_Shared> "${PROJECT_SOURCE_DIR}/lib")
+	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_LINKER_FILE:LuminoMath_Shared> "${CMAKE_SOURCE_DIR}/lib")
 
 #--------------------------------------
 # Unit test.
