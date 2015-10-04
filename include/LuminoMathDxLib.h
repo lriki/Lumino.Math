@@ -21,38 +21,26 @@
 #include "LuminoMath.h"
 
 #ifdef _MSC_VER
-	#if _MSC_VER >= 1800	// Visual C++ 12.0 (Visual Studio 2013)
-		#ifdef _DEBUG
-			#pragma comment(lib, "LuminoMath_msvc120x86_static_MTd")
-		#else
-			#pragma comment(lib, "LuminoMath_msvc120x86_static_MT")
-		#endif
+	#if _MSC_VER >= 1900	// Visual C++ 14.0 (Visual Studio 2015)
+		#define LN_MSVC_LIBVERNAME	"msvc140"
+	#elif _MSC_VER >= 1800	// Visual C++ 12.0 (Visual Studio 2013)
+		#define LN_MSVC_LIBVERNAME	"msvc120"
 	#elif _MSC_VER >= 1700	// Visual C++ 11.0 (Visual Studio 2012)
-		#ifdef _DEBUG
-			#pragma comment(lib, "LuminoMath_msvc110x86_static_MTd")
-		#else
-			#pragma comment(lib, "LuminoMath_msvc110x86_static_MT")
-		#endif
+		#define LN_MSVC_LIBVERNAME	"msvc110"
 	#elif _MSC_VER >= 1600	// Visual C++ 10.0 (Visual Studio 2010)
-		#ifdef _DEBUG
-			#pragma comment(lib, "LuminoMath_msvc100x86_static_MTd")
-		#else
-			#pragma comment(lib, "LuminoMath_msvc100x86_static_MT")
-		#endif
+		#define LN_MSVC_LIBVERNAME	"msvc100"
 	#elif _MSC_VER >= 1500	// Visual C++ 9.0 (Visual Studio 2008)
-		#ifdef _DEBUG
-			#pragma comment(lib, "LuminoMath_msvc90x86_static_MTd")
-		#else
-			#pragma comment(lib, "LuminoMath_msvc90x86_static_MT")
-		#endif
+		#define LN_MSVC_LIBVERNAME	"msvc90"
 	#elif _MSC_VER >= 1400	// Visual C++ 8.0 (Visual Studio 2005)
-		#ifdef _DEBUG
-			#pragma comment(lib, "LuminoMath_msvc80x86_static_MTd")
-		#else
-			#pragma comment(lib, "LuminoMath_msvc80x86_static_MT")
-		#endif
+		#define LN_MSVC_LIBVERNAME	"msvc80"
 	#else
 	#endif
+#endif
+
+#ifdef _DEBUG
+	#pragma comment(lib, "LuminoMath_" LN_MSVC_LIBVERNAME "x86_static_MTd")
+#else
+	#pragma comment(lib, "LuminoMath_" LN_MSVC_LIBVERNAME "x86_static_MT")
 #endif
 
 #endif // LUMINO_MATH_DXLIB_H
