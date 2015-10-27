@@ -1,6 +1,5 @@
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //-------------------------------------------------------------------------
 //
@@ -295,4 +294,4 @@ inline bool Vector3::operator != (const Vector3& v) const
 	return (X != v.X || Y != v.Y || Z != v.Z);
 }
 
-} // namespace Lumino
+LN_NAMESPACE_END

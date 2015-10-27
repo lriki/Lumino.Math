@@ -1,7 +1,6 @@
 ﻿
 #include <math.h>
 #include <assert.h>
-#include "Asm.h"
 #include "../../include/Lumino/Math/MathUtils.h"
 #include "../../include/Lumino/Math/Vector3.h"
 #include "../../include/Lumino/Math/Vector4.h"
@@ -9,9 +8,9 @@
 #include "../../include/Lumino/Math/SQTTransform.h"
 #include "../../include/Lumino/Math/Plane.h"
 #include "../../include/Lumino/Math/Matrix.h"
+#include "Asm.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //=============================================================================
 // Matrix
@@ -1759,4 +1758,4 @@ bool Matrix::operator != (const Matrix& mat) const
 	return !Equals(*this, mat);
 }
 
-} // namespace Lumino
+LN_NAMESPACE_END

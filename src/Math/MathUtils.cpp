@@ -5,8 +5,7 @@
 // 標準ヘッダの math.h と被るので Utils を付けている
 #include "../../include/Lumino/Math/MathUtils.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //=============================================================================
 // Math
@@ -125,4 +124,4 @@ float Math::CatmullRom(float v1, float v2, float v3, float v4, float t)
 	return (2.0f*v2 - 2.0f*v3 + d1 + d2)*t*t*t + (-3.0f*v2 + 3.0f*v3 - 2.0f*d1 - d2)*t*t + d1*t + v2;
 }
 
-} // namespace Lumino
+LN_NAMESPACE_END

@@ -9,8 +9,7 @@
 #define LUMINO_MATH_VERSION_PATCH	0			///< パッチ番号
 #define LUMINO_MATH_VERSION_STRING	"1.0.0"		///< バージョン文字列
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 namespace Version
 {
 
@@ -52,6 +51,6 @@ public:
 };
 
 } // namespace Version
-} // namespace Lumino
+LN_NAMESPACE_END
 
 #endif // LUMINO_MATH_VERSION_H

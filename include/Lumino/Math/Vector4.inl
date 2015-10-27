@@ -1,6 +1,5 @@
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //-------------------------------------------------------------------------
 //
@@ -318,4 +317,4 @@ inline bool Vector4::operator != (const Vector4& v) const
 	return (X != v.X || Y != v.Y || Z != v.Z || W != v.W);
 }
 
-} // namespace Lumino
+LN_NAMESPACE_END

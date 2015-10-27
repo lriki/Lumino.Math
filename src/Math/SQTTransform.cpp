@@ -1,8 +1,7 @@
 ﻿
 #include "../../include/Lumino/Math/SQTTransform.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //=============================================================================
 // SQTTransform
@@ -30,4 +29,4 @@ SQTTransform::SQTTransform(const Vector3& scale, const Quaternion& rotation, con
 {
 }
 	
-} // namespace Lumino
+LN_NAMESPACE_END

@@ -1,6 +1,5 @@
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //-------------------------------------------------------------------------
 //
@@ -18,4 +17,4 @@ inline bool Plane::CheckInside(const Vector3& point, float radius) const
 	return (Plane::DotCoord(*this, point) - radius < 0.0f);
 }
 
-} // namespace Lumino
+LN_NAMESPACE_END

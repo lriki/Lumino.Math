@@ -1,14 +1,13 @@
 ﻿
-#include "Asm.h"
 #include "../../include/Lumino/Math/MathUtils.h"
 #include "../../include/Lumino/Math/Vector2.h"
 #include "../../include/Lumino/Math/Vector3.h"
 #include "../../include/Lumino/Math/Vector4.h"
 #include "../../include/Lumino/Math/Quaternion.h"
 #include "../../include/Lumino/Math/Matrix.h"
+#include "Asm.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //=============================================================================
 // Vector3
@@ -292,4 +291,4 @@ Vector3 Vector3::Unproject(const Vector3& point, const Matrix& worldViewProj, fl
 	return Vector3::TransformCoord(v, inv);
 }
 
-} // namespace Lumino
+LN_NAMESPACE_END

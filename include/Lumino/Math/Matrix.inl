@@ -1,6 +1,5 @@
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //-------------------------------------------------------------------------
 //
@@ -58,4 +57,4 @@ inline const Vector4& Matrix::GetRow(int index) const
 	return (Vector4&)M[index][0];
 }
 
-} // namespace Lumino
+LN_NAMESPACE_END

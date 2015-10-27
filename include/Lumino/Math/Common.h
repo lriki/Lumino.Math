@@ -3,7 +3,8 @@
 #define LUMINO_MATH_COMMON_H
 
 #if defined(LUMINO_DLL) && defined(LUMINO_BUILD_DLL)
-	/* LUMINO_DLL と LUMINO_BUILD_DLL の同時定義は禁止。
+	/* 
+	 * LUMINO_DLL と LUMINO_BUILD_DLL の同時定義は禁止。
 	 * LUMINO_DLL はライブラリをDLLとして使うとき、
 	 * LUMINO_BUILD_DLL はライブラリ本体をビルドするときにのみ使用する。
 	 */
@@ -12,20 +13,18 @@
 
 #if defined(_WIN32) && defined(LUMINO_BUILD_DLL)
 	#define LUMINO_EXPORT	__declspec(dllexport)
-	
 #elif defined(_WIN32) && defined(LUMINO_DLL)
 	#define LUMINO_EXPORT	__declspec(dllimport)
-	
 #elif defined(__GNUC__) && defined(LUMINO_BUILD_DLL)
 	#define LUMINO_EXPORT	__attribute__((visibility("default")))
-	
 #else
-	#define LUMINO_EXPORT
-	
+	#define LUMINO_EXPORT	
 #endif
+
+#define LN_NAMESPACE_BEGIN	namespace ln {
+#define LN_NAMESPACE_END	}
 	
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 /// 回転順序
 enum RotationOrder
@@ -51,6 +50,6 @@ enum FrustumPlane
 	FrustumPlane_Max,
 };
 
-} // namespace Lumino
+LN_NAMESPACE_END
 
 #endif // __LUMINO_MATH_COMMON_H__

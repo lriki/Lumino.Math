@@ -4,8 +4,7 @@
 
 #include "Common.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 /**
 	@brief		疑似乱数を生成するのクラスです。
@@ -101,6 +100,6 @@ private:
 */
 extern Randomizer Random;
 
-} // namespace Lumino
+LN_NAMESPACE_END
 
 #endif // LUMINO_MATH_RANDOM_H

@@ -5,8 +5,7 @@
 #include "Common.h"
 #include "Vector3.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 /**
 	@brief		ïΩñ ÇíËã`ÇµÇ‹Ç∑ÅB
@@ -140,7 +139,7 @@ public:
 
 };
 
-} // namespace Lumino
+LN_NAMESPACE_END
 
 #include "Plane.inl"
 

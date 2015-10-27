@@ -1,13 +1,12 @@
 ﻿
 #include <assert.h>
-#include "Asm.h"
 #include "../../include/Lumino/Math/MathUtils.h"
 #include "../../include/Lumino/Math/Vector3.h"
 #include "../../include/Lumino/Math/Matrix.h"
 #include "../../include/Lumino/Math/Quaternion.h"
+#include "Asm.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //=============================================================================
 // Quaternion
@@ -425,4 +424,4 @@ Quaternion Quaternion::Slerp(const Quaternion& qua1, const Quaternion& qua2, flo
 		(inverse * qua1.W) + (opposite * qua2.W));
 }
 
-} // namespace Lumino
+LN_NAMESPACE_END

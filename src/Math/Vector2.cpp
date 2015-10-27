@@ -1,12 +1,11 @@
 ﻿
-#include "Asm.h"
 #include "../../include/Lumino/Math/MathUtils.h"
 #include "../../include/Lumino/Math/Matrix.h"
 #include "../../include/Lumino/Math/Vector2.h"
 #include "../../include/Lumino/Math/Vector4.h"
+#include "Asm.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //=============================================================================
 // Vector2
@@ -169,4 +168,4 @@ Vector2 Vector2::CatmullRom(const Vector2& vec1, const Vector2& vec2, const Vect
 		Math::CatmullRom(vec1.Y, vec2.Y, vec3.Y, vec4.Y, t));
 }
 
-} // namespace Lumino
+LN_NAMESPACE_END

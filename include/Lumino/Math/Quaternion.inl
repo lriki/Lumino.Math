@@ -1,6 +1,5 @@
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //-------------------------------------------------------------------------
 //
@@ -268,4 +267,4 @@ inline bool Quaternion::operator != (const Quaternion& v) const
 	return (X != v.X || Y != v.Y || Z != v.Z || W != v.W);
 }
 
-} // namespace Lumino
+LN_NAMESPACE_END

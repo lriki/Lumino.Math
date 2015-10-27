@@ -7,8 +7,7 @@
 #include "Common.h"
 #include "Vector4.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 class Vector3;
 class Quaternion;
 class SQTTransform;
@@ -514,7 +513,7 @@ public:
 #endif
 };
 
-} // namespace Lumino
+LN_NAMESPACE_END
 
 #include "Matrix.inl"
 

@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include "Common.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
+
 class Vector4;
 class Matrix;
 
@@ -197,7 +197,7 @@ public:
 
 };
 
-} // namespace Lumino
+LN_NAMESPACE_END
 
 #include "Vector2.inl"
 

@@ -5,8 +5,7 @@
 #include <stdio.h>
 #include "Common.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 class Vector3;
 class Matrix;
 
@@ -259,7 +258,7 @@ public:
 
 };
 
-} // namespace Lumino
+LN_NAMESPACE_END
 
 #include "Quaternion.inl"
 

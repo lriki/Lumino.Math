@@ -5,8 +5,7 @@
 #include "Common.h"
 #include "Plane.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 class Matrix;
 
 /**
@@ -69,6 +68,6 @@ private:
 	Matrix		mViewProjMatrix;
 };
 
-} // namespace Lumino
+LN_NAMESPACE_END
 
 #endif // LUMINO_MATH_VIEWFRUSTUM_H

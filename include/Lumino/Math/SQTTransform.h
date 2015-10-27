@@ -6,8 +6,7 @@
 #include "Vector3.h"
 #include "Quaternion.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 /**
 	@brief		位置、回転、スケールを定義します。
@@ -38,6 +37,6 @@ public:
 	
 };
 
-} // namespace Lumino
+LN_NAMESPACE_END
 
 #endif // LUMINO_MATH_SQTTRANSFORM_H

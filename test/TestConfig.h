@@ -5,7 +5,7 @@
 #include <limits.h>
 #include <math.h>
 #include <LuminoMath.h>
-using namespace Lumino;
+using namespace ln;
 
 // float の演算方法がコンパイラによって異なり、結果が微妙に違くなる。
 // その差を吸収するため、比較する桁数を指定する。

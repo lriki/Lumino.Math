@@ -1,12 +1,11 @@
 
-#include "Asm.h"
 #include "../../include/Lumino/Math/Vector3.h"
 #include "../../include/Lumino/Math/Vector4.h"
 #include "../../include/Lumino/Math/Matrix.h"
 #include "../../include/Lumino/Math/Plane.h"
+#include "Asm.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //=============================================================================
 // Plane
@@ -165,4 +164,4 @@ Plane Plane::Transform(const Plane& plane, const Matrix& mat)
 		(((x * t.M41) + (y * t.M42)) + (z * t.M43)) + (d * t.M44));
 }
 
-} // namespace Lumino
+LN_NAMESPACE_END

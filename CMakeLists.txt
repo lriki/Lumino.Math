@@ -112,7 +112,9 @@ set(LN_HEADER_FILES
 	include/Lumino/Math/Matrix.inl
 	include/Lumino/Math/Plane.h
 	include/Lumino/Math/Plane.inl
-	include/Lumino/Math/Quaternion.h)
+	include/Lumino/Math/Quaternion.h
+	include/Lumino/Math/Version.h
+	include/Lumino/Math/ViewFrustum.h)
 
 #--------------------------------------
 # Source files.

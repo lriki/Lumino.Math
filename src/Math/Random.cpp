@@ -2,8 +2,7 @@
 #include <time.h>
 #include "../../include/Lumino/Math/Random.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //=============================================================================
 // Randomizer
@@ -127,4 +126,4 @@ float Randomizer::GetFloatWidth(float median, float width)
 	return GetFloatRange(median - width, median + width);
 }
 
-} // namespace Lumino
+LN_NAMESPACE_END

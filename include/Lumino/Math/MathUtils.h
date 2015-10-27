@@ -4,8 +4,7 @@
 
 #include "Common.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 /**
 	@brief	一般的な数学関数と定数をまとめたモジュールです。
@@ -101,6 +100,6 @@ public:
 
 };
 
-} // namespace Lumino
+LN_NAMESPACE_END
 
 #endif // LUMINO_MATH_MATH_H

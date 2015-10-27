@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include "Common.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
+
 class Vector2;
 class Vector3;
 class Matrix;
@@ -202,7 +202,7 @@ public:
 	bool operator != (const Vector4& v) const;
 };
 
-} // namespace Lumino
+LN_NAMESPACE_END
 
 #include "Vector4.inl"
 

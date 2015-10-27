@@ -4,8 +4,8 @@
 
 #include <math.h>
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
+
 class Asm
 {
 public:
@@ -51,6 +51,6 @@ public:
 	}
 };
 
-} // namespace Lumino
+LN_NAMESPACE_END
 
 #endif // LUMINO_MATH_ASM_H
