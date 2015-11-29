@@ -127,7 +127,8 @@ set(LN_SOURCE_FILES
 	src/Math/MathUtils.cpp
 	src/Math/Matrix.cpp
 	src/Math/Plane.cpp
-	src/Math/Quaternion.cpp)
+	src/Math/Quaternion.cpp
+	src/Math/ViewFrustum.cpp)
 
 #------------------------------------------------------------------------------
 # Output

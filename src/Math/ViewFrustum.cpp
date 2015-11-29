@@ -2,12 +2,18 @@
 #include "../../include/Lumino/Math/Matrix.h"
 #include "../../include/Lumino/Math/ViewFrustum.h"
 
-namespace Lumino
-{
+LN_NAMESPACE_BEGIN
 
 //=============================================================================
 // ViewFrustum
 //=============================================================================
+
+//-----------------------------------------------------------------------------
+//
+//-----------------------------------------------------------------------------
+ViewFrustum::ViewFrustum()
+{
+}
 
 //-----------------------------------------------------------------------------
 //
@@ -44,7 +50,7 @@ bool ViewFrustum::Intersects(const Vector3& point) const
 {
 	for (int i = 0; i < FrustumPlane_Max; ++i)
 	{
-		if (!mPlanes[i].CheckInside(point)) {
+		if (!mPlanes[i].CheckInsideLower(point)) {
 			return false;
 		}
 	}
@@ -90,4 +96,5 @@ void ViewFrustum::GetCornerPoints(Vector3* points) const
 	}
 }
 
-} // namespace Lumino
+LN_NAMESPACE_END
+

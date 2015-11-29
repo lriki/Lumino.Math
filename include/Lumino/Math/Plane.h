@@ -57,12 +57,19 @@ public:
 	void Normalize();
 
 	/**
-		@brief		点がこの平面の裏側にあるかを判定します。
+		@brief		点がこの平面の裏側にあるかを判定します。点が面上にある場合は表側と判定します。
 		@param[in]	point	: 判定する点の座標
 		@return		true の場合、裏側にある
 		@details	面は法線が伸びている方が表側です。
 	*/
 	bool CheckInside(const Vector3& point) const;
+
+	/**
+		@brief		点がこの平面の裏側にあるかを判定します。点が面上にある場合も裏側と判定します。
+		@param[in]	point	: 判定する点の座標
+		@return		true の場合、裏側にある
+	*/
+	bool CheckInsideLower(const Vector3& point) const;
 
 	/**
 		@brief		球がこの平面の裏側にあるかを判定します。

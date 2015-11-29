@@ -23,6 +23,11 @@ class LUMINO_EXPORT ViewFrustum
 public:
 
 	/**
+		@brief	デフォルトコンストラクタ。作成された視錐台は大きさを持ちません。
+	*/
+	ViewFrustum();
+
+	/**
 		@brief		指定されたビュープロジェクション行列を使用して初期化します。
 		@param[in]	viewProjMatrix	: 視錐台の生成に使用するビュープロジェクション行列
 	*/

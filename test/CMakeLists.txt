@@ -13,14 +13,16 @@ project (LuminoMath_UnitTest)
 set(LN_SOURCE_FILES
 	gtest/src/gtest-all.cc
 	gtest/src/gtest_main.cc
-	Test_Vector4.cpp
 	Test_Math.cpp
 	Test_Matrix.cpp
 	Test_Plane.cpp
 	Test_Quaternion.cpp
 	Test_SQTTransform.cpp
 	Test_Vector2.cpp
-	Test_Vector3.cpp)
+	Test_Vector3.cpp
+	Test_Vector4.cpp
+	Test_ViewFrustum.cpp
+)
 
 #------------------------------------------------------------------------------
 # Output

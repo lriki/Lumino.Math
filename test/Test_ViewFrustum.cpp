@@ -71,4 +71,32 @@ TEST_F(Test_ViewFrustum, Intersects)
 		float spr2 = 5;
 		ASSERT_TRUE(vf1.Intersects(sppos2, spr2));	
 	}
+
+	// Ortho (2D 想定)
+	{
+		Matrix vp;
+		vp = Matrix::LookAtLH(Vector3(320, 240, 0), Vector3(320, 240, 1), Vector3(0, 1, 0));
+		vp *= Matrix::OrthoLH(640, 480, 0, 1000);
+		ViewFrustum vf(vp);
+
+		Vector3 points[8];
+		vf.GetCornerPoints(points);
+
+		ASSERT_TRUE(vf.Intersects(Vector3(0, 0, 0)));
+		ASSERT_TRUE(vf.Intersects(Vector3(1, 0, 0)));
+		ASSERT_FALSE(vf.Intersects(Vector3(-1, 0, 0)));
+		ASSERT_TRUE(vf.Intersects(Vector3(639, 0, 0)));	// このあたりはどうしても誤差が出る。
+		ASSERT_TRUE(vf.Intersects(Vector3(640, 0, 0)));	// とりあえず、0～639までOKならそれで良しとする。
+		ASSERT_FALSE(vf.Intersects(Vector3(641, 0, 0)));// 以下、Y,Z軸についても同様。
+
+		ASSERT_TRUE(vf.Intersects(Vector3(0, 0, 0)));
+		ASSERT_FALSE(vf.Intersects(Vector3(0, -1, 0)));
+		ASSERT_TRUE(vf.Intersects(Vector3(0, 479, 0)));
+		ASSERT_FALSE(vf.Intersects(Vector3(0, 481, 0)));
+
+		ASSERT_TRUE(vf.Intersects(Vector3(0, 0, 0)));
+		ASSERT_FALSE(vf.Intersects(Vector3(0, 0, -1)));
+		ASSERT_TRUE(vf.Intersects(Vector3(0, 0, 999)));
+		ASSERT_FALSE(vf.Intersects(Vector3(0, 0, 1001)));
+	}
 }
