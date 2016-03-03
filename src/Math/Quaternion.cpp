@@ -173,7 +173,7 @@ void Quaternion::ToAxisAngle(Vector3* axis, float* angle) const
 	}
 	if (angle)
 	{
-		*angle = 2.0f * acos(q.W);
+		*angle = 2.0f * acosf(q.W);
 	}
 }
 
@@ -398,24 +398,24 @@ Quaternion Quaternion::Slerp(const Quaternion& qua1, const Quaternion& qua2, flo
 	float dot = (qua1.X * qua2.X) + (qua1.Y * qua2.Y) + (qua1.Z * qua2.Z) + (qua1.W * qua2.W);
 	bool flag = false;
 
-	if( dot < 0.0f )
+	if (dot < 0.0f)
 	{
 		flag = true;
 		dot = -dot;
 	}
 
-	if( dot > 0.999999f )
+	if (dot > 0.999999f)
 	{
 		inverse = 1.0f - t;
 		opposite = flag ? -t : t;
 	}
 	else
 	{
-		float ac = acos(dot);
-		float invSin = (1.0f / sin(ac));
+		float ac = acosf(dot);
+		float invSin = (1.0f / sinf(ac));
 
-		inverse = (sin((1.0f - t) * ac)) * invSin;
-		opposite = flag ? ((-sin(t * ac)) * invSin) : ((sin(t * ac)) * invSin);
+		inverse = (sinf((1.0f - t) * ac)) * invSin;
+		opposite = flag ? ((-sinf(t * ac)) * invSin) : ((sinf(t * ac)) * invSin);
 	}
 
 	return Quaternion(

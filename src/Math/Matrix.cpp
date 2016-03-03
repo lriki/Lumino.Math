@@ -972,18 +972,18 @@ static bool EulerAnglesXYZ(const Matrix& mat, float* xRot, float* yRot, float* z
 	{
 		*xRot = 0.0f;
 		*yRot = (mat.M[0][2] < 0 ? Math::PIOver2 : -Math::PIOver2);
-		*zRot = -atan2(-mat.M[1][0], mat.M[1][1]);
+		*zRot = -atan2f(-mat.M[1][0], mat.M[1][1]);
 		return false;
 	}
 
-	*yRot = -asin(mat.M[0][2]);
-	*xRot = asin(mat.M[1][2] / cos(*yRot));
+	*yRot = -asinf(mat.M[0][2]);
+	*xRot = asinf(mat.M[1][2] / cosf(*yRot));
 
 	if (Math::IsNaN(*xRot))	// ジンバルロック判定
 	{
 		*xRot = 0.0f;
 		*yRot = (mat.M[0][2] < 0 ? Math::PIOver2 : -Math::PIOver2);
-		*zRot = -atan2(-mat.M[1][0], mat.M[1][1]);
+		*zRot = -atan2f(-mat.M[1][0], mat.M[1][1]);
 		return false;
 	}
 
@@ -991,7 +991,7 @@ static bool EulerAnglesXYZ(const Matrix& mat, float* xRot, float* yRot, float* z
 		*xRot = Math::PI - (*xRot);
 	}
 
-	*zRot = atan2(mat.M[0][1], mat.M[0][0]);
+	*zRot = atan2f(mat.M[0][1], mat.M[0][0]);
 	return true;
 }
 
@@ -1001,18 +1001,18 @@ static bool EulerAnglesYZX(const Matrix& mat, float* xRot, float* yRot, float* z
 
 	if (mat.M[1][0] > 1.0f - Threshold || mat.M[1][0] < -1.0f + Threshold)	// ジンバルロック判定
 	{
-		*xRot = -atan2(-mat.M[2][1], mat.M[2][2]);
+		*xRot = -atan2f(-mat.M[2][1], mat.M[2][2]);
 		*yRot = 0.0f;
 		*zRot = (mat.M[1][0] < 0 ? Math::PIOver2 : -Math::PIOver2);
 		return false;
 	}
 
-	*zRot = -asin(mat.M[1][0]);
-	*yRot = asin(mat.M[2][0] / cos(*zRot));
+	*zRot = -asinf(mat.M[1][0]);
+	*yRot = asinf(mat.M[2][0] / cosf(*zRot));
 
 	if (Math::IsNaN(*yRot))	// ジンバルロック判定
 	{
-		*xRot = -atan2(-mat.M[2][1], mat.M[2][2]);
+		*xRot = -atan2f(-mat.M[2][1], mat.M[2][2]);
 		*yRot = 0.0f;
 		*zRot = (mat.M[1][0] < 0 ? Math::PIOver2 : -Math::PIOver2);
 		return false;
@@ -1022,7 +1022,7 @@ static bool EulerAnglesYZX(const Matrix& mat, float* xRot, float* yRot, float* z
 		*yRot = Math::PI - (*yRot);
 	}
 
-	*xRot = atan2(mat.M[1][2], mat.M[1][1]);
+	*xRot = atan2f(mat.M[1][2], mat.M[1][1]);
 	return true;
 }
 
@@ -1593,7 +1593,7 @@ Matrix Matrix::LookAtRH(const Vector3& position, const Vector3& lookAt, const Ve
 //-----------------------------------------------------------------------------
 Matrix Matrix::PerspectiveFovLH(float fovY, float aspect, float near, float far)
 {
-	float h = 1.f / tan(fovY * 0.5f);	// cot(fovY/2)
+	float h = 1.f / tanf(fovY * 0.5f);	// cot(fovY/2)
 	return Matrix(
 		h / aspect, 0.0f, 0.0f, 0.0f,
 		0.0f, h, 0.0f, 0.0f,
@@ -1606,7 +1606,7 @@ Matrix Matrix::PerspectiveFovLH(float fovY, float aspect, float near, float far)
 //-----------------------------------------------------------------------------
 Matrix Matrix::PerspectiveFovRH(float fovY, float aspect, float near, float far)
 {
-	float h = 1.f / tan(fovY * 0.5f);	// cot(fovY/2)
+	float h = 1.f / tanf(fovY * 0.5f);	// cot(fovY/2)
 	return Matrix(
 		h / aspect, 0.0f, 0.0f, 0.0f,
 		0.0f, h, 0.0f, 0.0f,

@@ -38,6 +38,8 @@ if (WIN32)
 		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_msvc110")
 	elseif (MSVC_VERSION EQUAL 1800)
 		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_msvc120")
+	elseif (MSVC_VERSION EQUAL 1900)
+		set(LN_STATIC_LIB_OUTPUT_NAME "${LN_STATIC_LIB_OUTPUT_NAME}_msvc140")
 	endif()
 	
 	# Architecture.
@@ -74,6 +76,8 @@ if (WIN32)
 	set(CMAKE_DEBUG_POSTFIX "d")
 	# end   Make static lib name.
 	#------------------------------------------------------
+	
+	add_definitions("/EHsc")	# VS2015, cmake Ç≈ê∂ê¨Ç∑ÇÈÇ∆âΩåÃÇ©è¡Ç¶ÇƒÇµÇ‹Ç§ÇÃÇ≈ñæé¶ìIÇ…éwíËÇ∑ÇÈ
 
 elseif (APPLE)
 	set(LN_STATIC_LIB_OUTPUT_NAME ${CMAKE_PROJECT_NAME})

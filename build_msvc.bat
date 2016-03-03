@@ -1,16 +1,13 @@
 
-set VsCmdSetupBat="C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\VsDevCmd.bat"
-set MSBuildExe="C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe"
-set CMakeExe="D:\Program Files\CMake\bin\cmake.exe"
+: VS2015 の「開発者コマンドプロンプト」から実行すること。
+: cmake に PATH を通しておくこと。
 
-
-call %VsCmdSetupBat%
 
 mkdir ".\build_vs2008_tmp"
 cd "build_vs2008_tmp"
-%CMakeExe% ".." -G "Visual Studio 9 2008"
-%MSBuildExe% "LuminoMath.sln" /p:Configuration=Debug
-%MSBuildExe% "LuminoMath.sln" /p:Configuration=Release
+cmake ".." -G "Visual Studio 9 2008"
+MSBuild "LuminoMath.sln" /p:Configuration=Debug /p:Platform=Win32
+MSBuild "LuminoMath.sln" /p:Configuration=Release /p:Platform=Win32
 "Debug\UnitTest.exe"
 if "ERRORLEVEL" LEQ "0" goto UNITTEST_FAILED
 "Release\UnitTest.exe"
@@ -19,9 +16,9 @@ cd ".."
 
 mkdir ".\build_vs2010_tmp"
 cd "build_vs2010_tmp"
-%CMakeExe% ".." -G "Visual Studio 10"
-%MSBuildExe% "LuminoMath.sln" /p:Configuration=Debug
-%MSBuildExe% "LuminoMath.sln" /p:Configuration=Release
+cmake ".." -G "Visual Studio 10"
+MSBuild "LuminoMath.sln" /p:Configuration=Debug /p:Platform=Win32
+MSBuild "LuminoMath.sln" /p:Configuration=Release /p:Platform=Win32
 "Debug\UnitTest.exe"
 if "ERRORLEVEL" LEQ "0" goto UNITTEST_FAILED
 "Release\UnitTest.exe"
@@ -30,9 +27,9 @@ cd ".."
 
 mkdir ".\build_vs2012_tmp"
 cd "build_vs2012_tmp"
-%CMakeExe% ".." -G "Visual Studio 11"
-%MSBuildExe% "LuminoMath.sln" /p:Configuration=Debug
-%MSBuildExe% "LuminoMath.sln" /p:Configuration=Release
+cmake ".." -G "Visual Studio 11"
+MSBuild "LuminoMath.sln" /p:Configuration=Debug /p:Platform=Win32
+MSBuild "LuminoMath.sln" /p:Configuration=Release /p:Platform=Win32
 "Debug\UnitTest.exe"
 if "ERRORLEVEL" LEQ "0" goto UNITTEST_FAILED
 "Release\UnitTest.exe"
@@ -41,9 +38,21 @@ cd ".."
 
 mkdir ".\build_vs2013_tmp"
 cd "build_vs2013_tmp"
-%CMakeExe% ".." -G "Visual Studio 12"
-%MSBuildExe% "LuminoMath.sln" /p:Configuration=Debug
-%MSBuildExe% "LuminoMath.sln" /p:Configuration=Release
+cmake ".." -G "Visual Studio 12"
+MSBuild "LuminoMath.sln" /p:Configuration=Debug /p:Platform=Win32
+MSBuild "LuminoMath.sln" /p:Configuration=Release /p:Platform=Win32
+"Debug\UnitTest.exe"
+if "ERRORLEVEL" LEQ "0" goto UNITTEST_FAILED
+"Release\UnitTest.exe"
+if "ERRORLEVEL" LEQ "0" goto UNITTEST_FAILED
+cd ".."
+
+
+mkdir ".\build_vs2015_tmp"
+cd "build_vs2015_tmp"
+cmake ".." -G "Visual Studio 14"
+MSBuild "LuminoMath.sln" /p:Configuration=Debug /p:Platform=Win32
+MSBuild "LuminoMath.sln" /p:Configuration=Release /p:Platform=Win32
 "Debug\UnitTest.exe"
 if "ERRORLEVEL" LEQ "0" goto UNITTEST_FAILED
 "Release\UnitTest.exe"

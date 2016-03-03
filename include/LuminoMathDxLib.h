@@ -21,7 +21,13 @@
 #include "LuminoMath.h"
 
 #ifdef _MSC_VER
-	#if _MSC_VER >= 1800	// Visual C++ 12.0 (Visual Studio 2013)
+	#if _MSC_VER >= 1900	// Visual C++ 14.0 (Visual Studio 2015)
+		#ifdef _DEBUG
+			#pragma comment(lib, "LuminoMath_msvc140x86_static_MTd")
+		#else
+			#pragma comment(lib, "LuminoMath_msvc140x86_static_MT")
+		#endif
+	#elif _MSC_VER >= 1800	// Visual C++ 12.0 (Visual Studio 2013)
 		#ifdef _DEBUG
 			#pragma comment(lib, "LuminoMath_msvc120x86_static_MTd")
 		#else
