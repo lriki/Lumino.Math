@@ -32,6 +32,8 @@ public:
 		@param[in]	d	: 原点からの法線に沿った Plane の距離
 	*/
 	Plane(float a, float b, float c, float d);
+
+	Plane(const Vector3& normal, float d);
 	
 	/**
 		@brief		平面上の1点と法線を指定してインスタンスを初期化します。
