@@ -143,7 +143,7 @@ TEST_F(Test_Quaternion, Basic)
 		Quaternion v(1, 2, 3, 4);
 		ASSERT_FALSE(v.IsNaNOrInf());
 		volatile  float d = 0.0f;
-		v.X /= d;
+		v.x /= d;
 		ASSERT_TRUE(v.IsNaNOrInf());
 	}
 

@@ -13,19 +13,19 @@ const SQTTransform SQTTransform::Identity = SQTTransform();
 //
 //-----------------------------------------------------------------------------
 SQTTransform::SQTTransform()
-	: Scale(Vector3::One)
-	, Rotation(Quaternion::Identity)
-	, Translation(Vector3::Zero)
+	: scale(Vector3::Ones)
+	, rotation(Quaternion::Identity)
+	, translation(Vector3::Zero)
 {
 }
 
 //-----------------------------------------------------------------------------
 //
 //-----------------------------------------------------------------------------
-SQTTransform::SQTTransform(const Vector3& scale, const Quaternion& rotation, const Vector3& translation)
-	: Scale(scale)
-	, Rotation(rotation)
-	, Translation(translation)
+SQTTransform::SQTTransform(const Vector3& scale_, const Quaternion& rotation_, const Vector3& translation_)
+	: scale(scale_)
+	, rotation(rotation_)
+	, translation(translation_)
 {
 }
 	

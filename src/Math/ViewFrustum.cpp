@@ -28,19 +28,19 @@ ViewFrustum::ViewFrustum(const Matrix& viewProjMatrix)
 //-----------------------------------------------------------------------------
 void ViewFrustum::SetViewProjMatrix(const Matrix& mat)
 {
-	mPlanes[FrustumPlane_Near] = Plane(-mat.M13, -mat.M23, -mat.M33, -mat.M43);
-	mPlanes[FrustumPlane_Far] = Plane(-mat.M14 + mat.M13, -mat.M24 + mat.M23, -mat.M34 + mat.M33, -mat.M44 + mat.M43);
-	mPlanes[FrustumPlane_Left] = Plane(-mat.M14 - mat.M11, -mat.M24 - mat.M21, -mat.M34 - mat.M31, -mat.M44 - mat.M41);
-	mPlanes[FrustumPlane_Right] = Plane(-mat.M14 + mat.M11, -mat.M24 + mat.M21, -mat.M34 + mat.M31, -mat.M44 + mat.M41);
-	mPlanes[FrustumPlane_Top] = Plane(-mat.M14 + mat.M12, -mat.M24 + mat.M22, -mat.M34 + mat.M32, -mat.M44 + mat.M42);
-	mPlanes[FrustumPlane_Bottom] = Plane(-mat.M14 - mat.M12, -mat.M24 - mat.M22, -mat.M34 - mat.M32, -mat.M44 - mat.M42);
+	m_planes[FrustumPlane_Near] = Plane(-mat.m13, -mat.m23, -mat.m33, -mat.m43);
+	m_planes[FrustumPlane_Far] = Plane(-mat.m14 + mat.m13, -mat.m24 + mat.m23, -mat.m34 + mat.m33, -mat.m44 + mat.m43);
+	m_planes[FrustumPlane_Left] = Plane(-mat.m14 - mat.m11, -mat.m24 - mat.m21, -mat.m34 - mat.m31, -mat.m44 - mat.m41);
+	m_planes[FrustumPlane_Right] = Plane(-mat.m14 + mat.m11, -mat.m24 + mat.m21, -mat.m34 + mat.m31, -mat.m44 + mat.m41);
+	m_planes[FrustumPlane_Top] = Plane(-mat.m14 + mat.m12, -mat.m24 + mat.m22, -mat.m34 + mat.m32, -mat.m44 + mat.m42);
+	m_planes[FrustumPlane_Bottom] = Plane(-mat.m14 - mat.m12, -mat.m24 - mat.m22, -mat.m34 - mat.m32, -mat.m44 - mat.m42);
 
 	for (int i = 0; i < FrustumPlane_Max; ++i)
 	{
-		mPlanes[i].Normalize();
+		m_planes[i].Normalize();
 	}
 
-	mViewProjMatrix = mat;
+	m_viewProjMatrix = mat;
 }
 
 //-----------------------------------------------------------------------------
@@ -50,7 +50,7 @@ bool ViewFrustum::Intersects(const Vector3& point) const
 {
 	for (int i = 0; i < FrustumPlane_Max; ++i)
 	{
-		if (!mPlanes[i].CheckInsideLower(point)) {
+		if (!m_planes[i].CheckInsideLower(point)) {
 			return false;
 		}
 	}
@@ -64,7 +64,7 @@ bool ViewFrustum::Intersects(const Vector3& center, float radius) const
 {
 	for (int i = 0; i < FrustumPlane_Max; ++i)
 	{
-		if (!mPlanes[i].CheckInside(center, radius)) {
+		if (!m_planes[i].CheckInside(center, radius)) {
 			return false;
 		}
 	}
@@ -89,7 +89,7 @@ void ViewFrustum::GetCornerPoints(Vector3* points) const
 	points[7].Set(-1, -1, 1);
 
 	// Transfrom
-	Matrix inv = Matrix::Inverse(mViewProjMatrix);
+	Matrix inv = Matrix::Inverse(m_viewProjMatrix);
 	for (int i = 0; i < 8; ++i)
 	{
 		points[i].TransformCoord(inv);

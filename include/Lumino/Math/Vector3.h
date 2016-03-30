@@ -19,9 +19,9 @@ class LUMINO_EXPORT Vector3
 {
 public:
 
-	float	X;		///< X 要素
-	float	Y;		///< Y 要素
-	float	Z;		///< Z 要素
+	float	x;		///< X 要素
+	float	y;		///< Y 要素
+	float	z;		///< Z 要素
 
 public:
 
@@ -29,7 +29,7 @@ public:
 	static const Vector3   UnitX;		///< Vector3(1, 0, 0)
 	static const Vector3   UnitY;		///< Vector3(0, 1, 0)
 	static const Vector3   UnitZ;		///< Vector3(0, 0, 1)
-	static const Vector3   One;			///< Vector3(1, 1, 1)
+	static const Vector3   Ones;		///< Vector3(1, 1, 1)
 
 public:
 

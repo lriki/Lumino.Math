@@ -66,11 +66,11 @@ public:
 	/**
 		@brief		‘ä‚Ìw’è‚µ‚½–Ê‚ğæ“¾‚µ‚Ü‚·B
 	*/
-	const Plane& GetPlane(FrustumPlane plane) const { return mPlanes[plane]; }
+	const Plane& GetPlane(FrustumPlane plane) const { return m_planes[plane]; }
 
 private:
-	Plane		mPlanes[FrustumPlane_Max];
-	Matrix		mViewProjMatrix;
+	Plane		m_planes[FrustumPlane_Max];
+	Matrix		m_viewProjMatrix;
 };
 
 LN_NAMESPACE_END

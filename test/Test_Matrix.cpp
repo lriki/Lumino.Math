@@ -13,9 +13,9 @@ TEST_F(Test_Matrix, Basic)
 	// Matrix::Matrix(const SQTTransform&)
 	{
 		SQTTransform t;
-		t.Scale.Set(1, 2, 3);
-		t.Rotation = Quaternion::RotationYawPitchRoll(0.5, 0.75, 1.0);
-		t.Translation.Set(5, 6, 7);
+		t.scale.Set(1, 2, 3);
+		t.rotation = Quaternion::RotationYawPitchRoll(0.5, 0.75, 1.0);
+		t.translation.Set(5, 6, 7);
 
 		Matrix m(t);
 		ASSERT_MAT_NEAR(
@@ -50,7 +50,7 @@ TEST_F(Test_Matrix, Basic)
 	// this->GetRight/GetUp/GetFront/GetPosition
 	{
 		Matrix m;
-		m.M[3][0] = 5;
+		m.m[3][0] = 5;
 		ASSERT_VEC3_NEAR(1, 0, 0, m.GetRight());
 		ASSERT_VEC3_NEAR(0, 1, 0, m.GetUp());
 		ASSERT_VEC3_NEAR(0, 0, 1, m.GetFront());
@@ -302,7 +302,7 @@ TEST_F(Test_Matrix, Basic)
 		Matrix m = Matrix::Translation(5, 6, 7) * Matrix::RotationYawPitchRoll(1, 2, 3);
 		ASSERT_FALSE(m.IsNaNOrInf());
 		volatile  float d = 0.0f;
-		m.M[3][2] /= d;
+		m.m[3][2] /= d;
 		ASSERT_TRUE(m.IsNaNOrInf());
 	}
 
@@ -605,7 +605,7 @@ TEST_F(Test_Matrix, Basic)
 
 		ASSERT_TRUE(m2 == m);
 		ASSERT_FALSE(m2 != m);
-		m.M[0][1] = 5;
+		m.m[0][1] = 5;
 		ASSERT_FALSE(m2 == m);
 		ASSERT_TRUE(m2 != m);
 	}
