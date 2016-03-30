@@ -6,7 +6,7 @@ LN_NAMESPACE_BEGIN
 //-------------------------------------------------------------------------
 inline Vector4::Vector4()
 {
-	X = Y = Z = W = 0.0f;
+	x = y = z = w = 0.0f;
 }
 
 //-------------------------------------------------------------------------
@@ -14,10 +14,10 @@ inline Vector4::Vector4()
 //-------------------------------------------------------------------------
 inline Vector4::Vector4(float x_, float y_, float z_, float w_)
 {
-	X = x_;
-	Y = y_;
-	Z = z_;
-    W = w_;
+	x = x_;
+	y = y_;
+	z = z_;
+    w = w_;
 }
 
 //-------------------------------------------------------------------------
@@ -25,10 +25,10 @@ inline Vector4::Vector4(float x_, float y_, float z_, float w_)
 //-------------------------------------------------------------------------
 inline void Vector4::Set(float x_, float y_, float z_, float w_)
 {
-	X = x_;
-	Y = y_;
-	Z = z_;
-    W = w_;
+	x = x_;
+	y = y_;
+	z = z_;
+    w = w_;
 }
 
 //-------------------------------------------------------------------------
@@ -52,10 +52,10 @@ inline const Vector3& Vector4::GetXYZ() const
 //-------------------------------------------------------------------------
 inline Vector4& Vector4::operator += (const Vector4& v)
 {
-	X += v.X;
-	Y += v.Y;
-	Z += v.Z;
-	W += v.W;
+	x += v.x;
+	y += v.y;
+	z += v.z;
+	w += v.w;
 	return (*this);
 }
 
@@ -64,10 +64,10 @@ inline Vector4& Vector4::operator += (const Vector4& v)
 //-------------------------------------------------------------------------
 inline Vector4& Vector4::operator += (float v)
 {
-	X += v;
-	Y += v;
-	Z += v;
-	W += v;
+	x += v;
+	y += v;
+	z += v;
+	w += v;
 	return (*this);
 }
 
@@ -76,10 +76,10 @@ inline Vector4& Vector4::operator += (float v)
 //-------------------------------------------------------------------------
 inline Vector4& Vector4::operator -= (const Vector4& v)
 {
-	X -= v.X;
-	Y -= v.Y;
-	Z -= v.Z;
-	W -= v.W;
+	x -= v.x;
+	y -= v.y;
+	z -= v.z;
+	w -= v.w;
 	return (*this);
 }
 
@@ -88,10 +88,10 @@ inline Vector4& Vector4::operator -= (const Vector4& v)
 //-------------------------------------------------------------------------
 inline Vector4& Vector4::operator -= (float v)
 {
-	X -= v;
-	Y -= v;
-	Z -= v;
-	W -= v;
+	x -= v;
+	y -= v;
+	z -= v;
+	w -= v;
 	return (*this);
 }
 
@@ -100,10 +100,10 @@ inline Vector4& Vector4::operator -= (float v)
 //-------------------------------------------------------------------------
 inline Vector4& Vector4::operator *= (const Vector4& v)
 {
-	X *= v.X;
-	Y *= v.Y;
-	Z *= v.Z;
-	W *= v.W;
+	x *= v.x;
+	y *= v.y;
+	z *= v.z;
+	w *= v.w;
 	return (*this);
 }
 
@@ -112,10 +112,10 @@ inline Vector4& Vector4::operator *= (const Vector4& v)
 //-------------------------------------------------------------------------
 inline Vector4& Vector4::operator *= (float v)
 {
-	X *= v;
-	Y *= v;
-	Z *= v;
-	W *= v;
+	x *= v;
+	y *= v;
+	z *= v;
+	w *= v;
 	return (*this);
 }
 
@@ -124,10 +124,10 @@ inline Vector4& Vector4::operator *= (float v)
 //-------------------------------------------------------------------------
 inline Vector4& Vector4::operator /= (const Vector4& v)
 {
-	X /= v.X;
-	Y /= v.Y;
-	Z /= v.Z;
-	W /= v.W;
+	x /= v.x;
+	y /= v.y;
+	z /= v.z;
+	w /= v.w;
 	return (*this);
 }
 
@@ -137,10 +137,10 @@ inline Vector4& Vector4::operator /= (const Vector4& v)
 inline Vector4& Vector4::operator /= (float v)
 {
 	v = 1.0f / v;
-	X *= v;
-	Y *= v;
-	Z *= v;
-	W *= v;
+	x *= v;
+	y *= v;
+	z *= v;
+	w *= v;
 	return (*this);
 }
 
@@ -150,10 +150,10 @@ inline Vector4& Vector4::operator /= (float v)
 inline Vector4 operator + (const Vector4& v1, const Vector4& v2)
 {
 	return Vector4(
-		v1.X + v2.X,
-		v1.Y + v2.Y,
-		v1.Z + v2.Z,
-		v1.W + v2.W);
+		v1.x + v2.x,
+		v1.y + v2.y,
+		v1.z + v2.z,
+		v1.w + v2.w);
 }
 
 //-------------------------------------------------------------------------
@@ -162,10 +162,10 @@ inline Vector4 operator + (const Vector4& v1, const Vector4& v2)
 inline Vector4 operator + (const Vector4& v1, float v2)
 {
 	return Vector4(
-		v1.X + v2,
-		v1.Y + v2,
-		v1.Z + v2,
-		v1.W + v2);
+		v1.x + v2,
+		v1.y + v2,
+		v1.z + v2,
+		v1.w + v2);
 }
 
 //-------------------------------------------------------------------------
@@ -174,10 +174,10 @@ inline Vector4 operator + (const Vector4& v1, float v2)
 inline Vector4 operator + (float v1, const Vector4& v2)
 {
 	return Vector4(
-		v1 + v2.X,
-		v1 + v2.Y,
-		v1 + v2.Z,
-		v1 + v2.W);
+		v1 + v2.x,
+		v1 + v2.y,
+		v1 + v2.z,
+		v1 + v2.w);
 }
 
 //-------------------------------------------------------------------------
@@ -186,10 +186,10 @@ inline Vector4 operator + (float v1, const Vector4& v2)
 inline Vector4 operator - (const Vector4& v1, const Vector4& v2)
 {
 	return Vector4(
-		v1.X - v2.X,
-		v1.Y - v2.Y,
-		v1.Z - v2.Z,
-		v1.W - v2.W);
+		v1.x - v2.x,
+		v1.y - v2.y,
+		v1.z - v2.z,
+		v1.w - v2.w);
 }
 
 //-------------------------------------------------------------------------
@@ -198,10 +198,10 @@ inline Vector4 operator - (const Vector4& v1, const Vector4& v2)
 inline Vector4 operator - (const Vector4& v1, float v2)
 {
 	return Vector4(
-		v1.X - v2,
-		v1.Y - v2,
-		v1.Z - v2,
-		v1.W - v2);
+		v1.x - v2,
+		v1.y - v2,
+		v1.z - v2,
+		v1.w - v2);
 }
 
 //-------------------------------------------------------------------------
@@ -210,10 +210,10 @@ inline Vector4 operator - (const Vector4& v1, float v2)
 inline Vector4 operator - (float v1, const Vector4& v2)
 {
 	return Vector4(
-		v1 - v2.X,
-		v1 - v2.Y,
-		v1 - v2.Z,
-		v1 - v2.W);
+		v1 - v2.x,
+		v1 - v2.y,
+		v1 - v2.z,
+		v1 - v2.w);
 }
 
 //-------------------------------------------------------------------------
@@ -222,10 +222,10 @@ inline Vector4 operator - (float v1, const Vector4& v2)
 inline Vector4 operator * (const Vector4& v1, const Vector4& v2)
 {
 	return Vector4(
-		v1.X * v2.X,
-		v1.Y * v2.Y,
-		v1.Z * v2.Z,
-		v1.W * v2.W);
+		v1.x * v2.x,
+		v1.y * v2.y,
+		v1.z * v2.z,
+		v1.w * v2.w);
 }
 
 //-------------------------------------------------------------------------
@@ -234,10 +234,10 @@ inline Vector4 operator * (const Vector4& v1, const Vector4& v2)
 inline Vector4 operator * (const Vector4& v1, float v2)
 {
 	return Vector4(
-		v1.X * v2,
-		v1.Y * v2,
-		v1.Z * v2,
-		v1.W * v2);
+		v1.x * v2,
+		v1.y * v2,
+		v1.z * v2,
+		v1.w * v2);
 }
 
 //-------------------------------------------------------------------------
@@ -246,10 +246,10 @@ inline Vector4 operator * (const Vector4& v1, float v2)
 inline Vector4 operator * (float v1, const Vector4& v2)
 {
 	return Vector4(
-		v1 * v2.X,
-		v1 * v2.Y,
-		v1 * v2.Z,
-		v1 * v2.W);
+		v1 * v2.x,
+		v1 * v2.y,
+		v1 * v2.z,
+		v1 * v2.w);
 }
 
 //-------------------------------------------------------------------------
@@ -258,10 +258,10 @@ inline Vector4 operator * (float v1, const Vector4& v2)
 inline Vector4 operator / (const Vector4& v1, const Vector4& v2)
 {
 	return Vector4(
-		v1.X / v2.X,
-		v1.Y / v2.Y,
-		v1.Z / v2.Z,
-		v1.W / v2.W);
+		v1.x / v2.x,
+		v1.y / v2.y,
+		v1.z / v2.z,
+		v1.w / v2.w);
 }
 
 //-------------------------------------------------------------------------
@@ -271,10 +271,10 @@ inline Vector4 operator / (const Vector4& v1, float v2)
 {
 	v2 = 1.0f / v2;
 	return Vector4(
-		v1.X * v2,
-		v1.Y * v2,
-		v1.Z * v2,
-		v1.W * v2);
+		v1.x * v2,
+		v1.y * v2,
+		v1.z * v2,
+		v1.w * v2);
 }
 
 //-------------------------------------------------------------------------
@@ -283,10 +283,10 @@ inline Vector4 operator / (const Vector4& v1, float v2)
 inline Vector4 operator / (float v1, const Vector4& v2)
 {
 	return Vector4(
-		v1 / v2.X,
-		v1 / v2.Y,
-		v1 / v2.Z,
-		v1 / v2.W);
+		v1 / v2.x,
+		v1 / v2.y,
+		v1 / v2.z,
+		v1 / v2.w);
 }
 
 //-------------------------------------------------------------------------
@@ -295,10 +295,10 @@ inline Vector4 operator / (float v1, const Vector4& v2)
 inline Vector4 operator - (const Vector4& v1)
 {
 	return Vector4(
-		-v1.X,
-		-v1.Y,
-		-v1.Z,
-		-v1.W);
+		-v1.x,
+		-v1.y,
+		-v1.z,
+		-v1.w);
 }
 
 //-------------------------------------------------------------------------
@@ -306,7 +306,7 @@ inline Vector4 operator - (const Vector4& v1)
 //-------------------------------------------------------------------------
 inline bool Vector4::operator == (const Vector4& v) const
 {
-	return (X == v.X && Y == v.Y && Z == v.Z && W == v.W);
+	return (x == v.x && y == v.y && z == v.z && w == v.w);
 }
 
 //-------------------------------------------------------------------------
@@ -314,7 +314,7 @@ inline bool Vector4::operator == (const Vector4& v) const
 //-------------------------------------------------------------------------
 inline bool Vector4::operator != (const Vector4& v) const
 {
-	return (X != v.X || Y != v.Y || Z != v.Z || W != v.W);
+	return (x != v.x || y != v.y || z != v.z || w != v.w);
 }
 
 LN_NAMESPACE_END

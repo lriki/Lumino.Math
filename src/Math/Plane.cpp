@@ -63,10 +63,10 @@ Plane::Plane(const Vector3& point1, const Vector3& point2, const Vector3& point3
 //-----------------------------------------------------------------------------
 void Plane::Normalize()
 {
-	float t = 1.0f / Asm::sqrt((Normal.X * Normal.X) + (Normal.Y * Normal.Y) + (Normal.Z * Normal.Z));
-	Normal.X *= t;
-	Normal.Y *= t;
-	Normal.Z *= t;
+	float t = 1.0f / Asm::sqrt((Normal.x * Normal.x) + (Normal.y * Normal.y) + (Normal.z * Normal.z));
+	Normal.x *= t;
+	Normal.y *= t;
+	Normal.z *= t;
 	D *= t;
 }
 
@@ -92,16 +92,16 @@ bool Plane::Intersects(const Vector3& start, const Vector3& end, Vector3* point)
 //-----------------------------------------------------------------------------
 void Plane::Transform(const Matrix& mat)
 {
-	float x = Normal.X;
-	float y = Normal.Y;
-	float z = Normal.Z;
+	float x = Normal.x;
+	float y = Normal.y;
+	float z = Normal.z;
 	float d = D;
 	Matrix t = Matrix::Inverse(mat);
 
-	Normal.X = (((x * t.M11) + (y * t.M12)) + (z * t.M13)) + (d * t.M14);
-	Normal.Y = (((x * t.M21) + (y * t.M22)) + (z * t.M23)) + (d * t.M24);
-	Normal.Z = (((x * t.M31) + (y * t.M32)) + (z * t.M33)) + (d * t.M34);
-	D = (((x * t.M41) + (y * t.M42)) + (z * t.M43)) + (d * t.M44);
+	Normal.x = (((x * t.m11) + (y * t.m12)) + (z * t.m13)) + (d * t.m14);
+	Normal.y = (((x * t.m21) + (y * t.m22)) + (z * t.m23)) + (d * t.m24);
+	Normal.z = (((x * t.m31) + (y * t.m32)) + (z * t.m33)) + (d * t.m34);
+	D = (((x * t.m41) + (y * t.m42)) + (z * t.m43)) + (d * t.m44);
 }
 
 //-----------------------------------------------------------------------------
@@ -115,7 +115,7 @@ void Plane::Print(const char* format, FILE* stream) const
 	if (!stream) {
 		stream = stdout;
 	}
-	fprintf(stream, format, Normal.X, Normal.Y, Normal.Z, D);
+	fprintf(stream, format, Normal.x, Normal.y, Normal.z, D);
 }
 
 //-----------------------------------------------------------------------------
@@ -123,11 +123,11 @@ void Plane::Print(const char* format, FILE* stream) const
 //-----------------------------------------------------------------------------
 Plane Plane::Normalize(const Plane& plane)
 {
-	float t = 1.0f / Asm::sqrt((plane.Normal.X * plane.Normal.X) + (plane.Normal.Y * plane.Normal.Y) + (plane.Normal.Z * plane.Normal.Z));
+	float t = 1.0f / Asm::sqrt((plane.Normal.x * plane.Normal.x) + (plane.Normal.y * plane.Normal.y) + (plane.Normal.z * plane.Normal.z));
 	return Plane(
-		plane.Normal.X * t,
-		plane.Normal.Y * t,
-		plane.Normal.Z * t,
+		plane.Normal.x * t,
+		plane.Normal.y * t,
+		plane.Normal.z * t,
 		plane.D * t);
 }
 
@@ -136,7 +136,7 @@ Plane Plane::Normalize(const Plane& plane)
 //-----------------------------------------------------------------------------
 float Plane::Dot(const Plane& plane, const Vector4& vec)
 {
-	return (plane.Normal.X * vec.X) + (plane.Normal.Y * vec.Y) + (plane.Normal.Z * vec.Z) + (plane.D * vec.W);
+	return (plane.Normal.x * vec.x) + (plane.Normal.y * vec.y) + (plane.Normal.z * vec.z) + (plane.D * vec.w);
 }
 
 //-----------------------------------------------------------------------------
@@ -144,7 +144,7 @@ float Plane::Dot(const Plane& plane, const Vector4& vec)
 //-----------------------------------------------------------------------------
 float Plane::DotCoord(const Plane& plane, const Vector3& vec)
 {
-	return (plane.Normal.X * vec.X) + (plane.Normal.Y * vec.Y) + (plane.Normal.Z * vec.Z) + plane.D;
+	return (plane.Normal.x * vec.x) + (plane.Normal.y * vec.y) + (plane.Normal.z * vec.z) + plane.D;
 }
 
 //-----------------------------------------------------------------------------
@@ -152,7 +152,7 @@ float Plane::DotCoord(const Plane& plane, const Vector3& vec)
 //-----------------------------------------------------------------------------
 float Plane::DotNormal(const Plane& plane, const Vector3& vec)
 {
-	return (plane.Normal.X * vec.X) + (plane.Normal.Y * vec.Y) + (plane.Normal.Z * vec.Z);
+	return (plane.Normal.x * vec.x) + (plane.Normal.y * vec.y) + (plane.Normal.z * vec.z);
 }
 
 //-----------------------------------------------------------------------------
@@ -160,17 +160,17 @@ float Plane::DotNormal(const Plane& plane, const Vector3& vec)
 //-----------------------------------------------------------------------------
 Plane Plane::Transform(const Plane& plane, const Matrix& mat)
 {
-	float x = plane.Normal.X;
-	float y = plane.Normal.Y;
-	float z = plane.Normal.Z;
+	float x = plane.Normal.x;
+	float y = plane.Normal.y;
+	float z = plane.Normal.z;
 	float d = plane.D;
 	Matrix t = Matrix::Inverse(mat);
 
 	return Plane(
-		(((x * t.M11) + (y * t.M12)) + (z * t.M13)) + (d * t.M14),
-		(((x * t.M21) + (y * t.M22)) + (z * t.M23)) + (d * t.M24),
-		(((x * t.M31) + (y * t.M32)) + (z * t.M33)) + (d * t.M34),
-		(((x * t.M41) + (y * t.M42)) + (z * t.M43)) + (d * t.M44));
+		(((x * t.m11) + (y * t.m12)) + (z * t.m13)) + (d * t.m14),
+		(((x * t.m21) + (y * t.m22)) + (z * t.m23)) + (d * t.m24),
+		(((x * t.m31) + (y * t.m32)) + (z * t.m33)) + (d * t.m34),
+		(((x * t.m41) + (y * t.m42)) + (z * t.m43)) + (d * t.m44));
 }
 
 LN_NAMESPACE_END

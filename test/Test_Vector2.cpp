@@ -52,7 +52,7 @@ TEST_F(Test_Vector2, Basic)
 		Vector2 v(1, 2);
 		ASSERT_FALSE(v.IsNaNOrInf());
 		volatile  float d = 0.0f;
-		v.X /= d;
+		v.x /= d;
 		ASSERT_TRUE(v.IsNaNOrInf());
 	}
 

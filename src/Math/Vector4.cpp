@@ -17,10 +17,10 @@ LN_NAMESPACE_BEGIN
 //-----------------------------------------------------------------------------
 Vector4::Vector4(const Vector2& vec, float z_, float w_)
 {
-	X = vec.X;
-	Y = vec.Y;
-	Z = z_;
-	W = w_;
+	x = vec.x;
+	y = vec.y;
+	z = z_;
+	w = w_;
 }
 
 //-----------------------------------------------------------------------------
@@ -28,10 +28,10 @@ Vector4::Vector4(const Vector2& vec, float z_, float w_)
 //-----------------------------------------------------------------------------
 Vector4::Vector4(const Vector3& vec, float w_)
 {
-	X = vec.X;
-	Y = vec.Y;
-	Z = vec.Z;
-	W = w_;
+	x = vec.x;
+	y = vec.y;
+	z = vec.z;
+	w = w_;
 }
 
 //-----------------------------------------------------------------------------
@@ -39,7 +39,7 @@ Vector4::Vector4(const Vector3& vec, float w_)
 //-----------------------------------------------------------------------------
 float Vector4::GetLength() const
 {
-	return Asm::sqrt(X * X + Y * Y + Z * Z + W * W);
+	return Asm::sqrt(x * x + y * y + z * z + w * w);
 }
 
 //-----------------------------------------------------------------------------
@@ -47,7 +47,7 @@ float Vector4::GetLength() const
 //-----------------------------------------------------------------------------
 float Vector4::GetLengthSquared() const
 {
-	return X * X + Y * Y + Z * Z + W * W;
+	return x * x + y * y + z * z + w * w;
 }
 
 //-----------------------------------------------------------------------------
@@ -55,10 +55,10 @@ float Vector4::GetLengthSquared() const
 //-----------------------------------------------------------------------------
 void Vector4::Clamp(float min_xyzw, float max_xyzw)
 {
-	X = Math::Clamp(X, min_xyzw, max_xyzw);
-	Y = Math::Clamp(Y, min_xyzw, max_xyzw);
-	Z = Math::Clamp(Z, min_xyzw, max_xyzw);
-	W = Math::Clamp(W, min_xyzw, max_xyzw);
+	x = Math::Clamp(x, min_xyzw, max_xyzw);
+	y = Math::Clamp(y, min_xyzw, max_xyzw);
+	z = Math::Clamp(z, min_xyzw, max_xyzw);
+	w = Math::Clamp(w, min_xyzw, max_xyzw);
 }
 
 //-----------------------------------------------------------------------------
@@ -66,10 +66,10 @@ void Vector4::Clamp(float min_xyzw, float max_xyzw)
 //-----------------------------------------------------------------------------
 void Vector4::Clamp(const Vector4& minVec, const Vector4& maxVec)
 {
-	X = Math::Clamp(X, minVec.X, maxVec.X);
-	Y = Math::Clamp(Y, minVec.Y, maxVec.Y);
-	Z = Math::Clamp(Z, minVec.Z, maxVec.Z);
-	W = Math::Clamp(W, minVec.W, maxVec.W);
+	x = Math::Clamp(x, minVec.x, maxVec.x);
+	y = Math::Clamp(y, minVec.y, maxVec.y);
+	z = Math::Clamp(z, minVec.z, maxVec.z);
+	w = Math::Clamp(w, minVec.w, maxVec.w);
 }
 
 //-----------------------------------------------------------------------------
@@ -77,7 +77,7 @@ void Vector4::Clamp(const Vector4& minVec, const Vector4& maxVec)
 //-----------------------------------------------------------------------------
 bool Vector4::IsNaNOrInf() const
 {
-	return Math::IsNaNOrInf(X) || Math::IsNaNOrInf(Y) || Math::IsNaNOrInf(Z) || Math::IsNaNOrInf(W);
+	return Math::IsNaNOrInf(x) || Math::IsNaNOrInf(y) || Math::IsNaNOrInf(z) || Math::IsNaNOrInf(w);
 }
 
 //-----------------------------------------------------------------------------
@@ -91,7 +91,7 @@ void Vector4::Print(const char* format, FILE* stream) const
 	if (!stream) {
 		stream = stdout;
 	}
-	fprintf(stream, format, X, Y, Z, W);
+	fprintf(stream, format, x, y, z, w);
 }
 
 //-----------------------------------------------------------------------------
@@ -99,12 +99,12 @@ void Vector4::Print(const char* format, FILE* stream) const
 //-----------------------------------------------------------------------------
 Vector4 Vector4::Normalize(const Vector4& vec)
 {
-	float t = 1.0f / Asm::sqrt(vec.X * vec.X + vec.Y * vec.Y + vec.Z * vec.Z + vec.W * vec.W);
+	float t = 1.0f / Asm::sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z + vec.w * vec.w);
 	return Vector4(
-		vec.X * t,
-		vec.Y * t,
-		vec.Z * t,
-		vec.W * t);
+		vec.x * t,
+		vec.y * t,
+		vec.z * t,
+		vec.w * t);
 }
 
 //-----------------------------------------------------------------------------
@@ -112,7 +112,7 @@ Vector4 Vector4::Normalize(const Vector4& vec)
 //-----------------------------------------------------------------------------
 float Vector4::Dot(const Vector4& vec1, const Vector4& vec2)
 {
-	return (vec1.X * vec2.X + vec1.Y * vec2.Y + vec1.Z * vec2.Z + vec1.W * vec2.W);
+	return (vec1.x * vec2.x + vec1.y * vec2.y + vec1.z * vec2.z + vec1.w * vec2.w);
 }
 
 //-----------------------------------------------------------------------------
@@ -121,10 +121,10 @@ float Vector4::Dot(const Vector4& vec1, const Vector4& vec2)
 Vector4 Vector4::Min(const Vector4& vec1, const Vector4& vec2)
 {
 	return Vector4(
-		(vec1.X < vec2.X) ? vec1.X : vec2.X,
-		(vec1.Y < vec2.Y) ? vec1.Y : vec2.Y,
-		(vec1.Z < vec2.Z) ? vec1.Z : vec2.Z,
-		(vec1.W < vec2.W) ? vec1.W : vec2.W);
+		(vec1.x < vec2.x) ? vec1.x : vec2.x,
+		(vec1.y < vec2.y) ? vec1.y : vec2.y,
+		(vec1.z < vec2.z) ? vec1.z : vec2.z,
+		(vec1.w < vec2.w) ? vec1.w : vec2.w);
 }
 
 //-----------------------------------------------------------------------------
@@ -133,10 +133,10 @@ Vector4 Vector4::Min(const Vector4& vec1, const Vector4& vec2)
 Vector4 Vector4::Max(const Vector4& vec1, const Vector4& vec2)
 {
 	return Vector4(
-		(vec1.X > vec2.X) ? vec1.X : vec2.X,
-		(vec1.Y > vec2.Y) ? vec1.Y : vec2.Y,
-		(vec1.Z > vec2.Z) ? vec1.Z : vec2.Z,
-		(vec1.W > vec2.W) ? vec1.W : vec2.W);
+		(vec1.x > vec2.x) ? vec1.x : vec2.x,
+		(vec1.y > vec2.y) ? vec1.y : vec2.y,
+		(vec1.z > vec2.z) ? vec1.z : vec2.z,
+		(vec1.w > vec2.w) ? vec1.w : vec2.w);
 }
 
 //-----------------------------------------------------------------------------
@@ -145,10 +145,10 @@ Vector4 Vector4::Max(const Vector4& vec1, const Vector4& vec2)
 Vector4 Vector4::Transform(const Vector4& vec, const Matrix& mat)
 {
 	return Vector4(
-		(vec.X * mat.M11) + (vec.Y * mat.M21) + (vec.Z * mat.M31) + (vec.W * mat.M41),
-		(vec.X * mat.M12) + (vec.Y * mat.M22) + (vec.Z * mat.M32) + (vec.W * mat.M42),
-		(vec.X * mat.M13) + (vec.Y * mat.M23) + (vec.Z * mat.M33) + (vec.W * mat.M43),
-		(vec.X * mat.M14) + (vec.Y * mat.M24) + (vec.Z * mat.M34) + (vec.W * mat.M44));
+		(vec.x * mat.m11) + (vec.y * mat.m21) + (vec.z * mat.m31) + (vec.w * mat.m41),
+		(vec.x * mat.m12) + (vec.y * mat.m22) + (vec.z * mat.m32) + (vec.w * mat.m42),
+		(vec.x * mat.m13) + (vec.y * mat.m23) + (vec.z * mat.m33) + (vec.w * mat.m43),
+		(vec.x * mat.m14) + (vec.y * mat.m24) + (vec.z * mat.m34) + (vec.w * mat.m44));
 }
 
 //-----------------------------------------------------------------------------
@@ -157,10 +157,10 @@ Vector4 Vector4::Transform(const Vector4& vec, const Matrix& mat)
 Vector4 Vector4::Lerp(const Vector4& start, const Vector4& end, float t)
 {
 	return Vector4(
-		Math::Lerp(start.X, end.X, t),
-		Math::Lerp(start.Y, end.Y, t),
-		Math::Lerp(start.Z, end.Z, t),
-		Math::Lerp(start.W, end.W, t));
+		Math::Lerp(start.x, end.x, t),
+		Math::Lerp(start.y, end.y, t),
+		Math::Lerp(start.z, end.z, t),
+		Math::Lerp(start.w, end.w, t));
 }
 
 //-----------------------------------------------------------------------------
@@ -169,10 +169,10 @@ Vector4 Vector4::Lerp(const Vector4& start, const Vector4& end, float t)
 Vector4 Vector4::Hermite(const Vector4& v1, const Vector4& a1, const Vector4& v2, const Vector4& a2, float t)
 {
 	return Vector4(
-		Math::Hermite(v1.X, a1.X, v2.X, a2.X, t),
-		Math::Hermite(v1.Y, a1.Y, v2.Y, a2.Y, t),
-		Math::Hermite(v1.Z, a1.Z, v2.Z, a2.Z, t),
-		Math::Hermite(v1.W, a1.W, v2.W, a2.W, t));
+		Math::Hermite(v1.x, a1.x, v2.x, a2.x, t),
+		Math::Hermite(v1.y, a1.y, v2.y, a2.y, t),
+		Math::Hermite(v1.z, a1.z, v2.z, a2.z, t),
+		Math::Hermite(v1.w, a1.w, v2.w, a2.w, t));
 }
 
 //-----------------------------------------------------------------------------
@@ -181,10 +181,10 @@ Vector4 Vector4::Hermite(const Vector4& v1, const Vector4& a1, const Vector4& v2
 Vector4 Vector4::CatmullRom(const Vector4& vec1, const Vector4& vec2, const Vector4& vec3, const Vector4& vec4, float t)
 {
 	return Vector4(
-		Math::CatmullRom(vec1.X, vec2.X, vec3.X, vec4.X, t),
-		Math::CatmullRom(vec1.Y, vec2.Y, vec3.Y, vec4.Y, t),
-		Math::CatmullRom(vec1.Z, vec2.Z, vec3.Z, vec4.Z, t),
-		Math::CatmullRom(vec1.W, vec2.W, vec3.W, vec4.W, t));
+		Math::CatmullRom(vec1.x, vec2.x, vec3.x, vec4.x, t),
+		Math::CatmullRom(vec1.y, vec2.y, vec3.y, vec4.y, t),
+		Math::CatmullRom(vec1.z, vec2.z, vec3.z, vec4.z, t),
+		Math::CatmullRom(vec1.w, vec2.w, vec3.w, vec4.w, t));
 }
 
 LN_NAMESPACE_END

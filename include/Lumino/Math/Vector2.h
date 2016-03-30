@@ -17,15 +17,15 @@ class LUMINO_EXPORT Vector2
 {
 public:
 
-	float	X;		///< X 要素
-	float	Y;		///< Y 要素
+	float	x;		///< X 要素
+	float	y;		///< Y 要素
 
 public:
 
     static const Vector2   Zero;		///< Vector2(0, 0)
     static const Vector2   UnitX;		///< Vector2(1, 0)
     static const Vector2   UnitY;		///< Vector2(0, 1)
-	static const Vector2   One;			///< Vector2(1, 1)
+	static const Vector2   Ones;		///< Vector2(1, 1)
 
 public:
 

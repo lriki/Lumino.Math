@@ -6,7 +6,7 @@ LN_NAMESPACE_BEGIN
 //-------------------------------------------------------------------------
 inline Vector2::Vector2()
 {
-	X = Y = 0.0f;
+	x = y = 0.0f;
 }
 
 //-------------------------------------------------------------------------
@@ -14,8 +14,8 @@ inline Vector2::Vector2()
 //-------------------------------------------------------------------------
 inline Vector2::Vector2(float x_, float y_)
 {
-	X = x_;
-	Y = y_;
+	x = x_;
+	y = y_;
 }
 
 //-------------------------------------------------------------------------
@@ -23,8 +23,8 @@ inline Vector2::Vector2(float x_, float y_)
 //-------------------------------------------------------------------------
 inline void Vector2::Set(float x_, float y_)
 {
-	X = x_;
-	Y = y_;
+	x = x_;
+	y = y_;
 }
 
 //-------------------------------------------------------------------------
@@ -32,8 +32,8 @@ inline void Vector2::Set(float x_, float y_)
 //-------------------------------------------------------------------------
 inline Vector2& Vector2::operator += (const Vector2& v)
 {
-	X += v.X;
-	Y += v.Y;
+	x += v.x;
+	y += v.y;
 	return (*this);
 }
 
@@ -42,8 +42,8 @@ inline Vector2& Vector2::operator += (const Vector2& v)
 //-------------------------------------------------------------------------
 inline Vector2& Vector2::operator += (float v)
 {
-	X += v;
-	Y += v;
+	x += v;
+	y += v;
 	return (*this);
 }
 
@@ -52,8 +52,8 @@ inline Vector2& Vector2::operator += (float v)
 //-------------------------------------------------------------------------
 inline Vector2& Vector2::operator -= (const Vector2& v)
 {
-	X -= v.X;
-	Y -= v.Y;
+	x -= v.x;
+	y -= v.y;
 	return (*this);
 }
 
@@ -62,8 +62,8 @@ inline Vector2& Vector2::operator -= (const Vector2& v)
 //-------------------------------------------------------------------------
 inline Vector2& Vector2::operator -= (float v)
 {
-	X -= v;
-	Y -= v;
+	x -= v;
+	y -= v;
 	return (*this);
 }
 
@@ -72,8 +72,8 @@ inline Vector2& Vector2::operator -= (float v)
 //-------------------------------------------------------------------------
 inline Vector2& Vector2::operator *= (const Vector2& v)
 {
-	X *= v.X;
-	Y *= v.Y;
+	x *= v.x;
+	y *= v.y;
 	return (*this);
 }
 
@@ -82,8 +82,8 @@ inline Vector2& Vector2::operator *= (const Vector2& v)
 //-------------------------------------------------------------------------
 inline Vector2& Vector2::operator *= (float v)
 {
-	X *= v;
-	Y *= v;
+	x *= v;
+	y *= v;
 	return (*this);
 }
 
@@ -92,8 +92,8 @@ inline Vector2& Vector2::operator *= (float v)
 //-------------------------------------------------------------------------
 inline Vector2& Vector2::operator /= (const Vector2& v)
 {
-	X /= v.X;
-	Y /= v.Y;
+	x /= v.x;
+	y /= v.y;
 	return (*this);
 }
 
@@ -103,8 +103,8 @@ inline Vector2& Vector2::operator /= (const Vector2& v)
 inline Vector2& Vector2::operator /= (float v)
 {
 	v = 1.0f / v;
-	X *= v;
-	Y *= v;
+	x *= v;
+	y *= v;
 	return (*this);
 }
 
@@ -114,8 +114,8 @@ inline Vector2& Vector2::operator /= (float v)
 inline Vector2 operator + (const Vector2& v1, const Vector2& v2)
 {
 	return Vector2(
-		v1.X + v2.X,
-		v1.Y + v2.Y);
+		v1.x + v2.x,
+		v1.y + v2.y);
 }
 
 //-------------------------------------------------------------------------
@@ -124,8 +124,8 @@ inline Vector2 operator + (const Vector2& v1, const Vector2& v2)
 inline Vector2 operator + (const Vector2& v1, float v2)
 {
 	return Vector2(
-		v1.X + v2,
-		v1.Y + v2);
+		v1.x + v2,
+		v1.y + v2);
 }
 
 //-------------------------------------------------------------------------
@@ -134,8 +134,8 @@ inline Vector2 operator + (const Vector2& v1, float v2)
 inline Vector2 operator + (float v1, const Vector2& v2)
 {
 	return Vector2(
-		v1 + v2.X,
-		v1 + v2.Y);
+		v1 + v2.x,
+		v1 + v2.y);
 }
 
 //-------------------------------------------------------------------------
@@ -144,8 +144,8 @@ inline Vector2 operator + (float v1, const Vector2& v2)
 inline Vector2 operator - (const Vector2& v1, const Vector2& v2)
 {
 	return Vector2(
-		v1.X - v2.X,
-		v1.Y - v2.Y);
+		v1.x - v2.x,
+		v1.y - v2.y);
 }
 
 //-------------------------------------------------------------------------
@@ -154,8 +154,8 @@ inline Vector2 operator - (const Vector2& v1, const Vector2& v2)
 inline Vector2 operator - (const Vector2& v1, float v2)
 {
 	return Vector2(
-		v1.X - v2,
-		v1.Y - v2);
+		v1.x - v2,
+		v1.y - v2);
 }
 
 //-------------------------------------------------------------------------
@@ -164,8 +164,8 @@ inline Vector2 operator - (const Vector2& v1, float v2)
 inline Vector2 operator - (float v1, const Vector2& v2)
 {
 	return Vector2(
-		v1 - v2.X,
-		v1 - v2.Y);
+		v1 - v2.x,
+		v1 - v2.y);
 }
 
 //-------------------------------------------------------------------------
@@ -174,8 +174,8 @@ inline Vector2 operator - (float v1, const Vector2& v2)
 inline Vector2 operator * (const Vector2& v1, const Vector2& v2)
 {
 	return Vector2(
-		v1.X * v2.X,
-		v1.Y * v2.Y);
+		v1.x * v2.x,
+		v1.y * v2.y);
 }
 
 //-------------------------------------------------------------------------
@@ -184,8 +184,8 @@ inline Vector2 operator * (const Vector2& v1, const Vector2& v2)
 inline Vector2 operator * (const Vector2& v1, float v2)
 {
 	return Vector2(
-		v1.X * v2,
-		v1.Y * v2);
+		v1.x * v2,
+		v1.y * v2);
 }
 
 //-------------------------------------------------------------------------
@@ -194,8 +194,8 @@ inline Vector2 operator * (const Vector2& v1, float v2)
 inline Vector2 operator * (float v1, const Vector2& v2)
 {
 	return Vector2(
-		v1 * v2.X,
-		v1 * v2.Y);
+		v1 * v2.x,
+		v1 * v2.y);
 }
 
 //-------------------------------------------------------------------------
@@ -204,8 +204,8 @@ inline Vector2 operator * (float v1, const Vector2& v2)
 inline Vector2 operator / (const Vector2& v1, const Vector2& v2)
 {
 	return Vector2(
-		v1.X / v2.X,
-		v1.Y / v2.Y);
+		v1.x / v2.x,
+		v1.y / v2.y);
 }
 
 //-------------------------------------------------------------------------
@@ -215,8 +215,8 @@ inline Vector2 operator / (const Vector2& v1, float v2)
 {
 	v2 = 1.0f / v2;
 	return Vector2(
-		v1.X * v2,
-		v1.Y * v2);
+		v1.x * v2,
+		v1.y * v2);
 }
 
 //-------------------------------------------------------------------------
@@ -225,8 +225,8 @@ inline Vector2 operator / (const Vector2& v1, float v2)
 inline Vector2 operator / (float v1, const Vector2& v2)
 {
 	return Vector2(
-		v1 / v2.X,
-		v1 / v2.Y);
+		v1 / v2.x,
+		v1 / v2.y);
 }
 
 //-------------------------------------------------------------------------
@@ -235,8 +235,8 @@ inline Vector2 operator / (float v1, const Vector2& v2)
 inline Vector2 operator - (const Vector2& v1)
 {
 	return Vector2(
-		-v1.X,
-		-v1.Y);
+		-v1.x,
+		-v1.y);
 }
 
 //-------------------------------------------------------------------------
@@ -244,7 +244,7 @@ inline Vector2 operator - (const Vector2& v1)
 //-------------------------------------------------------------------------
 inline bool Vector2::operator == (const Vector2& v) const
 {
-	return (X == v.X && Y == v.Y);
+	return (x == v.x && y == v.y);
 }
 
 //-------------------------------------------------------------------------
@@ -252,7 +252,7 @@ inline bool Vector2::operator == (const Vector2& v) const
 //-------------------------------------------------------------------------
 inline bool Vector2::operator != (const Vector2& v) const
 {
-	return (X != v.X || Y != v.Y);
+	return (x != v.x || y != v.y);
 }
 
 LN_NAMESPACE_END

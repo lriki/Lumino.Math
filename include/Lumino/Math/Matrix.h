@@ -41,13 +41,13 @@ public:
 	{
 		struct
 		{
-			float M11, M12, M13, M14;
-			float M21, M22, M23, M24;
-			float M31, M32, M33, M34;
-			float M41, M42, M43, M44;
+			float m11, m12, m13, m14;
+			float m21, m22, m23, m24;
+			float m31, m32, m33, m34;
+			float m41, m42, m43, m44;
 		};
-		float M[4][4];
-		float m[16];
+		float m[4][4];
+		float elements[16];
 	};
 
 public:

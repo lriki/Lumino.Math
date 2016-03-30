@@ -18,7 +18,7 @@ TEST_F(Test_Vector3, Basic)
 		ASSERT_VEC3_NEAR(1, 0, 0, Vector3::UnitX);
 		ASSERT_VEC3_NEAR(0, 1, 0, Vector3::UnitY);
 		ASSERT_VEC3_NEAR(0, 0, 1, Vector3::UnitZ);
-		ASSERT_VEC3_NEAR(1, 1, 1, Vector3::One);
+		ASSERT_VEC3_NEAR(1, 1, 1, Vector3::Ones);
 	}
 	// コンストラクタ
 	{
@@ -74,7 +74,7 @@ TEST_F(Test_Vector3, Basic)
 		Vector3 v(1, 2, 3);
 		ASSERT_FALSE(v.IsNaNOrInf());
 		volatile  float d = 0.0f;
-		v.X /= d;
+		v.x /= d;
 		ASSERT_TRUE(v.IsNaNOrInf());
 	}
 

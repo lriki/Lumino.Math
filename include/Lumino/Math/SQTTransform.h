@@ -15,9 +15,9 @@ class LUMINO_EXPORT SQTTransform
 {
 public:
 
-	Vector3		Scale;          ///< 拡大
-	Quaternion	Rotation;       ///< 回転
-	Vector3		Translation;    ///< 位置
+	Vector3		scale;          ///< 拡大
+	Quaternion	rotation;       ///< 回転
+	Vector3		translation;    ///< 位置
 	
 public:
 	

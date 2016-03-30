@@ -24,10 +24,10 @@ class LUMINO_EXPORT Quaternion
 {
 public:
 
-	float	X;		///< X 要素
-	float	Y;		///< Y 要素
-	float	Z;		///< Z 要素
-	float	W;		///< W 要素
+	float	x;		///< X 要素
+	float	y;		///< Y 要素
+	float	z;		///< Z 要素
+	float	w;		///< W 要素
 
 public:
 

@@ -6,8 +6,8 @@ LN_NAMESPACE_BEGIN
 //-------------------------------------------------------------------------
 inline Quaternion::Quaternion()
 {
-	X = Y = Z = 0.0f;
-	W = 1.0f;
+	x = y = z = 0.0f;
+	w = 1.0f;
 }
 
 //-------------------------------------------------------------------------
@@ -15,10 +15,10 @@ inline Quaternion::Quaternion()
 //-------------------------------------------------------------------------
 inline Quaternion::Quaternion(float x_, float y_, float z_, float w_)
 {
-	X = x_;
-	Y = y_;
-	Z = z_;
-    W = w_;
+	x = x_;
+	y = y_;
+	z = z_;
+    w = w_;
 }
 
 //-------------------------------------------------------------------------
@@ -26,10 +26,10 @@ inline Quaternion::Quaternion(float x_, float y_, float z_, float w_)
 //-------------------------------------------------------------------------
 inline void Quaternion::Set(float x_, float y_, float z_, float w_)
 {
-	X = x_;
-	Y = y_;
-	Z = z_;
-    W = w_;
+	x = x_;
+	y = y_;
+	z = z_;
+    w = w_;
 }
 
 //-------------------------------------------------------------------------
@@ -37,7 +37,7 @@ inline void Quaternion::Set(float x_, float y_, float z_, float w_)
 //-------------------------------------------------------------------------
 inline bool Quaternion::IsIdentity() const
 {
-	return (X == 0.0f && Y == 0.0f && Z == 0.0f && W == 1.0f);
+	return (x == 0.0f && y == 0.0f && z == 0.0f && w == 1.0f);
 }
 
 //-------------------------------------------------------------------------
@@ -45,10 +45,10 @@ inline bool Quaternion::IsIdentity() const
 //-------------------------------------------------------------------------
 inline Quaternion& Quaternion::operator += (const Quaternion& v)
 {
-	X += v.X;
-	Y += v.Y;
-	Z += v.Z;
-	W += v.W;
+	x += v.x;
+	y += v.y;
+	z += v.z;
+	w += v.w;
 	return (*this);
 }
 
@@ -57,10 +57,10 @@ inline Quaternion& Quaternion::operator += (const Quaternion& v)
 //-------------------------------------------------------------------------
 inline Quaternion& Quaternion::operator += (float v)
 {
-	X += v;
-	Y += v;
-	Z += v;
-	W += v;
+	x += v;
+	y += v;
+	z += v;
+	w += v;
 	return (*this);
 }
 
@@ -69,10 +69,10 @@ inline Quaternion& Quaternion::operator += (float v)
 //-------------------------------------------------------------------------
 inline Quaternion& Quaternion::operator -= (const Quaternion& v)
 {
-	X -= v.X;
-	Y -= v.Y;
-	Z -= v.Z;
-	W -= v.W;
+	x -= v.x;
+	y -= v.y;
+	z -= v.z;
+	w -= v.w;
 	return (*this);
 }
 
@@ -81,10 +81,10 @@ inline Quaternion& Quaternion::operator -= (const Quaternion& v)
 //-------------------------------------------------------------------------
 inline Quaternion& Quaternion::operator -= (float v)
 {
-	X -= v;
-	Y -= v;
-	Z -= v;
-	W -= v;
+	x -= v;
+	y -= v;
+	z -= v;
+	w -= v;
 	return (*this);
 }
 
@@ -102,10 +102,10 @@ inline Quaternion& Quaternion::operator *= (const Quaternion& v)
 //-------------------------------------------------------------------------
 inline Quaternion& Quaternion::operator *= (float v)
 {
-	X *= v;
-	Y *= v;
-	Z *= v;
-	W *= v;
+	x *= v;
+	y *= v;
+	z *= v;
+	w *= v;
 	return (*this);
 }
 
@@ -115,10 +115,10 @@ inline Quaternion& Quaternion::operator *= (float v)
 inline Quaternion& Quaternion::operator /= (float v)
 {
 	v = 1.0f / v;
-	X *= v;
-	Y *= v;
-	Z *= v;
-	W *= v;
+	x *= v;
+	y *= v;
+	z *= v;
+	w *= v;
 	return (*this);
 }
 
@@ -128,10 +128,10 @@ inline Quaternion& Quaternion::operator /= (float v)
 inline Quaternion operator + (const Quaternion& v1, const Quaternion& v2)
 {
 	return Quaternion(
-		v1.X + v2.X,
-		v1.Y + v2.Y,
-		v1.Z + v2.Z,
-		v1.W + v2.W);
+		v1.x + v2.x,
+		v1.y + v2.y,
+		v1.z + v2.z,
+		v1.w + v2.w);
 }
 
 //-------------------------------------------------------------------------
@@ -140,10 +140,10 @@ inline Quaternion operator + (const Quaternion& v1, const Quaternion& v2)
 inline Quaternion operator + (const Quaternion& v1, float v2)
 {
 	return Quaternion(
-		v1.X + v2,
-		v1.Y + v2,
-		v1.Z + v2,
-		v1.W + v2);
+		v1.x + v2,
+		v1.y + v2,
+		v1.z + v2,
+		v1.w + v2);
 }
 
 //-------------------------------------------------------------------------
@@ -152,10 +152,10 @@ inline Quaternion operator + (const Quaternion& v1, float v2)
 inline Quaternion operator + (float v1, const Quaternion& v2)
 {
 	return Quaternion(
-		v1 + v2.X,
-		v1 + v2.Y,
-		v1 + v2.Z,
-		v1 + v2.W);
+		v1 + v2.x,
+		v1 + v2.y,
+		v1 + v2.z,
+		v1 + v2.w);
 }
 
 //-------------------------------------------------------------------------
@@ -164,10 +164,10 @@ inline Quaternion operator + (float v1, const Quaternion& v2)
 inline Quaternion operator - (const Quaternion& v1, const Quaternion& v2)
 {
 	return Quaternion(
-		v1.X - v2.X,
-		v1.Y - v2.Y,
-		v1.Z - v2.Z,
-		v1.W - v2.W);
+		v1.x - v2.x,
+		v1.y - v2.y,
+		v1.z - v2.z,
+		v1.w - v2.w);
 }
 
 //-------------------------------------------------------------------------
@@ -176,10 +176,10 @@ inline Quaternion operator - (const Quaternion& v1, const Quaternion& v2)
 inline Quaternion operator - (const Quaternion& v1, float v2)
 {
 	return Quaternion(
-		v1.X - v2,
-		v1.Y - v2,
-		v1.Z - v2,
-		v1.W - v2);
+		v1.x - v2,
+		v1.y - v2,
+		v1.z - v2,
+		v1.w - v2);
 }
 
 //-------------------------------------------------------------------------
@@ -188,10 +188,10 @@ inline Quaternion operator - (const Quaternion& v1, float v2)
 inline Quaternion operator - (float v1, const Quaternion& v2)
 {
 	return Quaternion(
-		v1 - v2.X,
-		v1 - v2.Y,
-		v1 - v2.Z,
-		v1 - v2.W);
+		v1 - v2.x,
+		v1 - v2.y,
+		v1 - v2.z,
+		v1 - v2.w);
 }
 
 //-------------------------------------------------------------------------
@@ -208,10 +208,10 @@ inline Quaternion operator * (const Quaternion& v1, const Quaternion& v2)
 inline Quaternion operator * (const Quaternion& v1, float v2)
 {
 	return Quaternion(
-		v1.X * v2,
-		v1.Y * v2,
-		v1.Z * v2,
-		v1.W * v2);
+		v1.x * v2,
+		v1.y * v2,
+		v1.z * v2,
+		v1.w * v2);
 }
 
 //-------------------------------------------------------------------------
@@ -220,10 +220,10 @@ inline Quaternion operator * (const Quaternion& v1, float v2)
 inline Quaternion operator * (float v1, const Quaternion& v2)
 {
 	return Quaternion(
-		v1 * v2.X,
-		v1 * v2.Y,
-		v1 * v2.Z,
-		v1 * v2.W);
+		v1 * v2.x,
+		v1 * v2.y,
+		v1 * v2.z,
+		v1 * v2.w);
 }
 
 //-------------------------------------------------------------------------
@@ -233,10 +233,10 @@ inline Quaternion operator / (const Quaternion& v1, float v2)
 {
 	v2 = 1.0f / v2;
 	return Quaternion(
-		v1.X * v2,
-		v1.Y * v2,
-		v1.Z * v2,
-		v1.W * v2);
+		v1.x * v2,
+		v1.y * v2,
+		v1.z * v2,
+		v1.w * v2);
 }
 
 //-------------------------------------------------------------------------
@@ -245,10 +245,10 @@ inline Quaternion operator / (const Quaternion& v1, float v2)
 inline Quaternion operator - (const Quaternion& v1)
 {
 	return Quaternion(
-		-v1.X,
-		-v1.Y,
-		-v1.Z,
-		-v1.W);
+		-v1.x,
+		-v1.y,
+		-v1.z,
+		-v1.w);
 }
 
 //-------------------------------------------------------------------------
@@ -256,7 +256,7 @@ inline Quaternion operator - (const Quaternion& v1)
 //-------------------------------------------------------------------------
 inline bool Quaternion::operator == (const Quaternion& v) const
 {
-	return (X == v.X && Y == v.Y && Z == v.Z && W == v.W);
+	return (x == v.x && y == v.y && z == v.z && w == v.w);
 }
 
 //-------------------------------------------------------------------------
@@ -264,7 +264,7 @@ inline bool Quaternion::operator == (const Quaternion& v) const
 //-------------------------------------------------------------------------
 inline bool Quaternion::operator != (const Quaternion& v) const
 {
-	return (X != v.X || Y != v.Y || Z != v.Z || W != v.W);
+	return (x != v.x || y != v.y || z != v.z || w != v.w);
 }
 
 LN_NAMESPACE_END

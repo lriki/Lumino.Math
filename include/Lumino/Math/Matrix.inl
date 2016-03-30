@@ -14,7 +14,7 @@ inline bool Matrix::IsIdentity() const
 //-------------------------------------------------------------------------
 inline const Vector3& Matrix::GetRight() const
 { 
-	return (Vector3&)M[0][0];
+	return (Vector3&)m[0][0];
 }
 
 //-------------------------------------------------------------------------
@@ -22,7 +22,7 @@ inline const Vector3& Matrix::GetRight() const
 //-------------------------------------------------------------------------
 inline const Vector3& Matrix::GetUp() const
 {
-	return (Vector3&)M[1][0];
+	return (Vector3&)m[1][0];
 }
 
 //-------------------------------------------------------------------------
@@ -30,7 +30,7 @@ inline const Vector3& Matrix::GetUp() const
 //-------------------------------------------------------------------------
 inline const Vector3& Matrix::GetFront() const
 {
-	return (Vector3&)M[2][0];
+	return (Vector3&)m[2][0];
 }
 
 //-------------------------------------------------------------------------
@@ -38,7 +38,7 @@ inline const Vector3& Matrix::GetFront() const
 //-------------------------------------------------------------------------
 inline const Vector3& Matrix::GetPosition() const
 {
-	return (Vector3&)M[3][0];
+	return (Vector3&)m[3][0];
 }
 
 //-------------------------------------------------------------------------
@@ -46,7 +46,7 @@ inline const Vector3& Matrix::GetPosition() const
 //-------------------------------------------------------------------------
 inline void Matrix::SetRow(int index, const Vector4& row)
 {
-	((Vector4&)M[index][0]) = row;
+	((Vector4&)m[index][0]) = row;
 }
 
 //-------------------------------------------------------------------------
@@ -54,7 +54,7 @@ inline void Matrix::SetRow(int index, const Vector4& row)
 //-------------------------------------------------------------------------
 inline const Vector4& Matrix::GetRow(int index) const
 {
-	return (Vector4&)M[index][0];
+	return (Vector4&)m[index][0];
 }
 
 LN_NAMESPACE_END
