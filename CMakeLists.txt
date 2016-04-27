@@ -145,18 +145,18 @@ add_custom_command(
 
 #--------------------------------------
 # Shared library.
-add_library(LuminoMath_Shared SHARED ${LN_SOURCE_FILES} ${LN_HEADER_FILES})
-set_target_properties(LuminoMath_Shared PROPERTIES OUTPUT_NAME "LuminoMath")
-set_target_properties(LuminoMath_Shared PROPERTIES COMPILE_DEFINITIONS "LUMINO_BUILD_DLL")
-set_target_properties(LuminoMath_Shared PROPERTIES DEBUG_POSTFIX "_d")		# Invalid CMake 2.8.7 (Ubuntu12.04).  Use "set(CMAKE_DEBUG_POSTFIX "_d")" Instand
-add_custom_command(
-	TARGET LuminoMath_Shared
-	POST_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:LuminoMath_Shared> "${CMAKE_SOURCE_DIR}/lib")
-add_custom_command(
-	TARGET LuminoMath_Shared
-	POST_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_LINKER_FILE:LuminoMath_Shared> "${CMAKE_SOURCE_DIR}/lib")
+#add_library(LuminoMath_Shared SHARED ${LN_SOURCE_FILES} ${LN_HEADER_FILES})
+#set_target_properties(LuminoMath_Shared PROPERTIES OUTPUT_NAME "LuminoMath")
+#set_target_properties(LuminoMath_Shared PROPERTIES COMPILE_DEFINITIONS "LUMINO_BUILD_DLL")
+#set_target_properties(LuminoMath_Shared PROPERTIES DEBUG_POSTFIX "_d")		# Invalid CMake 2.8.7 (Ubuntu12.04).  Use "set(CMAKE_DEBUG_POSTFIX "_d")" Instand
+#add_custom_command(
+#	TARGET LuminoMath_Shared
+#	POST_BUILD
+#	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:LuminoMath_Shared> "${CMAKE_SOURCE_DIR}/lib")
+#add_custom_command(
+#	TARGET LuminoMath_Shared
+#	POST_BUILD
+#	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_LINKER_FILE:LuminoMath_Shared> "${CMAKE_SOURCE_DIR}/lib")
 
 #--------------------------------------
 # Unit test.
