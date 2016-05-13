@@ -285,35 +285,35 @@ public:
 		@param[in]	z		: Z 軸の移動量
 		@return		演算結果の行列
 	*/
-	static Matrix Translation(float x, float y, float z);
+	static Matrix MakeTranslation(float x, float y, float z);
 
 	/**
 		@brief		平行移動行列を作成します。
 		@param[in]	vec		: 移動量
 		@return		演算結果の行列
 	*/
-	static Matrix Translation(const Vector3& vec);
+	static Matrix MakeTranslation(const Vector3& vec);
 
 	/**
 		@brief		X 軸を回転軸にして回転する行列を作成します。
 		@param[in]	r		: 回転角度 (ラジアン単位)
 		@return		演算結果の行列
 	*/
-	static Matrix RotationX(float r);
+	static Matrix MakeRotationX(float r);
 
 	/**
 		@brief		Y 軸を回転軸にして回転する行列を作成します。
 		@param[in]	r		: 回転角度 (ラジアン単位)
 		@return		演算結果の行列
 	*/
-	static Matrix RotationY(float r);
+	static Matrix MakeRotationY(float r);
 
 	/**
 		@brief		Z 軸を回転軸にして回転する行列を作成します。
 		@param[in]	r		: 回転角度 (ラジアン単位)
 		@return		演算結果の行列
 	*/
-	static Matrix RotationZ(float r);
+	static Matrix MakeRotationZ(float r);
 	
 	/**
 		@brief		回転軸と角度を指定して行列を作成します。
@@ -322,14 +322,14 @@ public:
 		@return		演算結果の行列
 		@details	axis が単位ベクトルでない場合は正規化してから計算を行います。
 	*/
-	static Matrix RotationAxis(const Vector3& axis, float r);
+	static Matrix MakeRotationAxis(const Vector3& axis, float r);
 
 	/**
 		@brief		クォータニオンから回転行列を作成します。
 		@param[in]  qua		: 処理の基になるクォータニオン
 		@return		演算結果の行列
 	*/
-	static Matrix RotationQuaternion(const Quaternion& qua);
+	static Matrix MakeRotationQuaternion(const Quaternion& qua);
 
 	/**
 		@brief		XYZ 各軸のオイラー角から回転行列を作成します。
@@ -339,7 +339,7 @@ public:
 		@param[in]  order	: 回転順序
 		@return		演算結果の行列
 	*/
-	static Matrix RotationEulerAngles(float x, float y, float z, RotationOrder order = RotationOrder_ZXY);
+	static Matrix MakeRotationEulerAngles(float x, float y, float z, RotationOrder order = RotationOrder_ZXY);
 
 	/**
 		@brief		XYZ 各軸のオイラー角から回転行列を作成します。
@@ -347,7 +347,7 @@ public:
 		@param[in]  order	: 回転順序
 		@return		演算結果の行列
 	*/
-	static Matrix RotationEulerAngles(const Vector3& angles, RotationOrder order = RotationOrder_ZXY);
+	static Matrix MakeRotationEulerAngles(const Vector3& angles, RotationOrder order = RotationOrder_ZXY);
 
 	/**
 		@brief		ヨー、ピッチ、ロールを指定して行列を作成します。
@@ -359,7 +359,7 @@ public:
 					これは  D3DXMatrixRotationYawPitchRoll の回転順序と同じで、
 					RotationEulerAngles に RotationOrder_ZXY を指定して計算した結果とも同じです。
 	*/
-	static Matrix RotationYawPitchRoll(float yaw, float pitch, float roll);
+	static Matrix MakeRotationYawPitchRoll(float yaw, float pitch, float roll);
 
 	/**
 		@brief		各軸にそってスケーリングする行列を作成します。
@@ -368,35 +368,35 @@ public:
 		@param[in]	z		: Z 軸の拡縮率
 		@return		演算結果の行列
 	*/
-	static Matrix Scaling(float x, float y, float z);
+	static Matrix MakeScaling(float x, float y, float z);
 
 	/**
 		@brief		各軸にそってスケーリングする行列を作成します。
 		@param[in]	vec		: 各軸の拡縮率
 		@return		演算結果の行列
 	*/
-	static Matrix Scaling(const Vector3& vec);
+	static Matrix MakeScaling(const Vector3& vec);
 
 	/**
 		@brief		各軸にそってスケーリングする行列を作成します。
 		@param[in]	xyz		: 全ての軸の拡縮率
 		@return		演算結果の行列
 	*/
-	static Matrix Scaling(float xyz);
+	static Matrix MakeScaling(float xyz);
 
 	/**
 		@brief		指定された行列の逆行列を作成します。
 		@param[in]  mat		: 処理の基になる行列
 		@return		作成された逆行列
 	*/
-	static Matrix Inverse(const Matrix& mat);
+	static Matrix MakeInverse(const Matrix& mat);
 
 	/**
 		@brief		指定された行列の転置行列を作成します。
 		@param[in]  mat		: 処理の基になる行列
 		@return		作成された転置行列
 	*/
-	static Matrix Transpose(const Matrix& mat);
+	static Matrix MakeTranspose(const Matrix& mat);
 
 	/**
 		@brief		平面に対して座標系を反転した行列を作成します。
@@ -405,7 +405,7 @@ public:
 		@return		演算結果の行列
 		@details	plane は正規化してから計算を行います。
 	*/
-	static Matrix Reflection(const Plane& plane);
+	static Matrix MakeReflection(const Plane& plane);
 
 	/**
 		@brief		左手座標系ビュー行列を作成します。
@@ -414,7 +414,7 @@ public:
 		@param[in]	up			: 上方向
 		@return		演算結果の行列
 	*/
-	static Matrix LookAtLH(const Vector3& position, const Vector3& lookAt, const Vector3& up);
+	static Matrix MakeLookAtLH(const Vector3& position, const Vector3& lookAt, const Vector3& up);
 
 	/**
 		@brief		右手座標系ビュー行列を作成します。
@@ -423,7 +423,7 @@ public:
 		@param[in]	up			: 上方向
 		@return		演算結果の行列
 	*/
-	static Matrix LookAtRH(const Vector3& position, const Vector3& lookAt, const Vector3& up);
+	static Matrix MakeLookAtRH(const Vector3& position, const Vector3& lookAt, const Vector3& up);
 
 	/**
 		@brief		左手座標系パースペクティブ射影行列を作成します。
@@ -433,7 +433,7 @@ public:
 		@param[in]  far			: 遠いビュー平面の Z 値
 		@return		演算結果の行列
 	*/
-	static Matrix PerspectiveFovLH(float fovY, float aspect, float near, float far);
+	static Matrix MakePerspectiveFovLH(float fovY, float aspect, float near, float far);
 
 	/**
 		@brief		右手座標系パースペクティブ射影行列を作成します。
@@ -443,7 +443,7 @@ public:
 		@param[in]  far			: 遠いビュー平面の Z 値
 		@return		演算結果の行列
 	*/
-	static Matrix PerspectiveFovRH(float fovY, float aspect, float near, float far);
+	static Matrix MakePerspectiveFovRH(float fovY, float aspect, float near, float far);
 
 	/**
 		@brief		左手座標系正射影行列を作成します。
@@ -453,7 +453,7 @@ public:
 		@param[in]  far			: 一番遠いビュー平面の Z 値
 		@return		演算結果の行列
 	*/
-	static Matrix OrthoLH(float width, float height, float near, float far);
+	static Matrix MakeOrthoLH(float width, float height, float near, float far);
 
 	/**
 		@brief		右手座標系正射影行列を作成します。
@@ -463,7 +463,7 @@ public:
 		@param[in]  far			: 一番遠いビュー平面の Z 値
 		@return		演算結果の行列
 	*/
-	static Matrix OrthoRH(float width, float height, float near, float far);
+	static Matrix MakeOrthoRH(float width, float height, float near, float far);
 	
 	/**
 		@brief		2D 座標系用の左手座標系正射影行列を作成します。
@@ -474,7 +474,7 @@ public:
 		@return		演算結果の行列
 		@details	ビューの左上を原点とし、右方向を X+、下方向を Y+、手前方向を Z+ とします。
 	*/
-	static Matrix Perspective2DLH(float width, float height, float near, float far);
+	static Matrix MakePerspective2DLH(float width, float height, float near, float far);
 	
 	/**
 		@brief		2D 座標系用の右手座標系正射影行列を作成します。
@@ -485,7 +485,7 @@ public:
 		@return		演算結果の行列
 		@details	ビューの左上を原点とし、右方向を X+、下方向を Y+、奥方向を Z+ とします。
 	*/
-	static Matrix Perspective2DRH(float width, float height, float near, float far);
+	static Matrix MakePerspective2DRH(float width, float height, float near, float far);
 
 	/**
 		@brief		アフィン変換行列を作成します。
@@ -495,7 +495,7 @@ public:
 		@param[in]  translation		: 平行移動
 		@return		演算結果の行列
 	*/
-	static Matrix AffineTransformation(const Vector3& scaling, const Vector3& rotationCenter, const Quaternion& rotation, const Vector3& translation);
+	static Matrix MakeAffineTransformation(const Vector3& scaling, const Vector3& rotationCenter, const Quaternion& rotation, const Vector3& translation);
 
 public:
 

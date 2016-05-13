@@ -77,7 +77,7 @@ void ViewFrustum::GetCornerPoints(Vector3* points) const
 	points[7].Set(-1, -1, 1);
 
 	// Transfrom
-	Matrix inv = Matrix::Inverse(m_viewProjMatrix);
+	Matrix inv = Matrix::MakeInverse(m_viewProjMatrix);
 	for (int i = 0; i < 8; ++i)
 	{
 		points[i].TransformCoord(inv);

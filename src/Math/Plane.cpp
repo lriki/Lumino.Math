@@ -80,7 +80,7 @@ void Plane::Transform(const Matrix& mat)
 	float y = Normal.y;
 	float z = Normal.z;
 	float d = D;
-	Matrix t = Matrix::Inverse(mat);
+	Matrix t = Matrix::MakeInverse(mat);
 
 	Normal.x = (((x * t.m11) + (y * t.m12)) + (z * t.m13)) + (d * t.m14);
 	Normal.y = (((x * t.m21) + (y * t.m22)) + (z * t.m23)) + (d * t.m24);
@@ -136,7 +136,7 @@ Plane Plane::Transform(const Plane& plane, const Matrix& mat)
 	float y = plane.Normal.y;
 	float z = plane.Normal.z;
 	float d = plane.D;
-	Matrix t = Matrix::Inverse(mat);
+	Matrix t = Matrix::MakeInverse(mat);
 
 	return Plane(
 		(((x * t.m11) + (y * t.m12)) + (z * t.m13)) + (d * t.m14),

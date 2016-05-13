@@ -43,7 +43,7 @@ TEST_F(Test_Vector2, Basic)
 	// this->TransformCoord()
 	{
 		Vector2 v1(1, 2);
-		Matrix m = Matrix::RotationYawPitchRoll(1, 2, 3);
+		Matrix m = Matrix::MakeRotationYawPitchRoll(1, 2, 3);
 		v1.TransformCoord(m);
 		ASSERT_VEC2_NEAR(-2.094393, 0.765238, v1);
 	}
@@ -76,13 +76,13 @@ TEST_F(Test_Vector2, Basic)
 	}
 	// Vector2::Transform()
 	{
-		Matrix m = Matrix::RotationYawPitchRoll(1, 2, 3);
+		Matrix m = Matrix::MakeRotationYawPitchRoll(1, 2, 3);
 		Vector4 v1 = Vector2::Transform(Vector2(1, 2), m);
 		ASSERT_VEC4_NEAR(-2.094393, 0.765238, 0.167121, 1.000000, v1);
 	}
 	// Vector2::TransformCoord()
 	{
-		Matrix m = Matrix::RotationYawPitchRoll(1, 2, 3);
+		Matrix m = Matrix::MakeRotationYawPitchRoll(1, 2, 3);
 		Vector2 v1 = Vector2::TransformCoord(Vector2(1, 2), m);
 		ASSERT_VEC2_NEAR(-2.094393, 0.765238, v1);
 	}

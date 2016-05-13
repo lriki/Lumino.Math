@@ -70,7 +70,7 @@ TEST_F(Test_Plane, Basic)
 		Vector3 v2 = Vector3::Normalize(4, 5, 6);
 		Plane pl1(v1, v2);
 
-		Matrix mat = Matrix::RotationZ(Math::PI / 2);
+		Matrix mat = Matrix::MakeRotationZ(Math::PI / 2);
 		pl1.Transform(mat);
 		ASSERT_PLANE_NEAR(-0.569803, 0.455842, 0.683764, 15.669580, pl1);
 	}
@@ -96,7 +96,7 @@ TEST_F(Test_Plane, Basic)
 		Vector3 v2 = Vector3::Normalize(4, 5, 6);
 		Plane pl1(v1, v2);
 
-		Matrix mat = Matrix::RotationZ(Math::PI / 2);
+		Matrix mat = Matrix::MakeRotationZ(Math::PI / 2);
 		Plane pl2 = Plane::Transform(pl1, mat);
 		ASSERT_PLANE_NEAR(-0.569803, 0.455842, 0.683764, 15.669580, pl2);
 	}

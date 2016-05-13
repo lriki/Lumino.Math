@@ -14,7 +14,7 @@ TEST_F(Test_ViewFrustum, Basic)
 	{
 		ViewFrustum v1(Matrix::Identity);
 
-		Matrix m2 = Matrix::LookAtLH(Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 1, 0)) * Matrix::PerspectiveFovLH(Math::PI / 4, 640.0f / 480.0f, 1, 1000);
+		Matrix m2 = Matrix::MakeLookAtLH(Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 1, 0)) * Matrix::MakePerspectiveFovLH(Math::PI / 4, 640.0f / 480.0f, 1, 1000);
 		ViewFrustum v2(m2);
 		ASSERT_PLANE_NEAR(-0.000000, -0.000000, -1.000000, 1.000000, v2.GetPlane(FrustumPlane_Near));
 		ASSERT_PLANE_NEAR(0.000000, 0.000000, 1.000000, -1000.000610, v2.GetPlane(FrustumPlane_Far));
@@ -24,7 +24,7 @@ TEST_F(Test_ViewFrustum, Basic)
 		ASSERT_PLANE_NEAR(-0.000000, -0.923880, -0.382683, -0.000000, v2.GetPlane(FrustumPlane_Bottom));
 		
 		// Ortho
-		ViewFrustum v3(Matrix::LookAtRH(Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 1, 0)) * Matrix::OrthoRH(640, 480, 0, 1000));
+		ViewFrustum v3(Matrix::MakeLookAtRH(Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 1, 0)) * Matrix::MakeOrthoRH(640, 480, 0, 1000));
 		ASSERT_PLANE_NEAR(-0.000000, -0.000000, -1.000000, -0.000000, v3.GetPlane(FrustumPlane_Near));
 		ASSERT_PLANE_NEAR(0.000000, 0.000000, 1.000000, -999.999939, v3.GetPlane(FrustumPlane_Far));
 		ASSERT_PLANE_NEAR(1.000000, -0.000000, -0.000000, -320.000000, v3.GetPlane(FrustumPlane_Left));
@@ -51,11 +51,11 @@ TEST_F(Test_ViewFrustum, Basic)
 
 TEST_F(Test_ViewFrustum, Intersects)
 {
-	Matrix proj1 = Matrix::PerspectiveFovLH(Math::PI / 4, 640.0f / 480.0f, 1, 1000);
+	Matrix proj1 = Matrix::MakePerspectiveFovLH(Math::PI / 4, 640.0f / 480.0f, 1, 1000);
 
 	// Z+ Œü‚«
 	{
-		Matrix view = Matrix::LookAtLH(Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 1, 0));
+		Matrix view = Matrix::MakeLookAtLH(Vector3(0, 0, 0), Vector3(0, 0, 1), Vector3(0, 1, 0));
 		ViewFrustum vf1(view * proj1);
 
 		Vector3 pos1(0, 0, 10);
@@ -75,8 +75,8 @@ TEST_F(Test_ViewFrustum, Intersects)
 	// Ortho (2D ‘z’è)
 	{
 		Matrix vp;
-		vp = Matrix::LookAtLH(Vector3(320, 240, 0), Vector3(320, 240, 1), Vector3(0, 1, 0));
-		vp *= Matrix::OrthoLH(640, 480, 0, 1000);
+		vp = Matrix::MakeLookAtLH(Vector3(320, 240, 0), Vector3(320, 240, 1), Vector3(0, 1, 0));
+		vp *= Matrix::MakeOrthoLH(640, 480, 0, 1000);
 		ViewFrustum vf(vp);
 
 		Vector3 points[8];

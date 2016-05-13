@@ -270,7 +270,7 @@ Vector3 Vector3::Project(const Vector3& point, const Matrix& worldViewProj, floa
 Vector3 Vector3::Unproject(const Vector3& point, const Matrix& worldViewProj, float x, float y, float width, float height, float minZ, float maxZ)
 {
 	Vector3 v;
-	Matrix inv = Matrix::Inverse(worldViewProj);
+	Matrix inv = Matrix::MakeInverse(worldViewProj);
 
 	v.x = (((point.x - x) / width) * 2.0f) - 1.0f;
 	v.y = -((((point.y - y) / height) * 2.0f) - 1.0f);

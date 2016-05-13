@@ -11,7 +11,7 @@ protected:
 //------------------------------------------------------------------------------
 TEST_F(Test_Quaternion, Basic)
 {
-	const Quaternion sample1 = Quaternion::RotationYawPitchRoll(0.5, 0.75, -1.0);
+	const Quaternion sample1 = Quaternion::MakeFromYawPitchRoll(0.5, 0.75, -1.0);
 	const Quaternion sample2 = Quaternion(1, 2, 3, 4);
 
 	// コンストラクタ
@@ -69,7 +69,7 @@ TEST_F(Test_Quaternion, Basic)
 	}
 	// this->RotateX/Y/Z
 	{
-		Quaternion q1 = Quaternion::RotationYawPitchRoll(0.5, 0.75, 1.0);
+		Quaternion q1 = Quaternion::MakeFromYawPitchRoll(0.5, 0.75, 1.0);
 
 		// YawPitchRoll と同じ
 		Quaternion q2;
@@ -87,20 +87,20 @@ TEST_F(Test_Quaternion, Basic)
 	}
 	// this->ToEulerAngles
 	{
-		Quaternion q1 = Quaternion::RotationYawPitchRoll(0.5, 0.75, 1.0);
+		Quaternion q1 = Quaternion::MakeFromYawPitchRoll(0.5, 0.75, 1.0);
 		Vector3 r1 = q1.ToEulerAngles();
 		Vector3 r2 = q1.ToEulerAngles(RotationOrder_XYZ);
 		Vector3 r3 = q1.ToEulerAngles(RotationOrder_YZX);
 
-		Quaternion q2 = Quaternion::RotationYawPitchRoll(0, 0.75, 0);
-		q2.Multiply(Quaternion::RotationYawPitchRoll(0.25, 0, 0));
-		q2.Multiply(Quaternion::RotationYawPitchRoll(0, 0, 0.5));
+		Quaternion q2 = Quaternion::MakeFromYawPitchRoll(0, 0.75, 0);
+		q2.Multiply(Quaternion::MakeFromYawPitchRoll(0.25, 0, 0));
+		q2.Multiply(Quaternion::MakeFromYawPitchRoll(0, 0, 0.5));
 		Vector3 r4 = q2.ToEulerAngles(RotationOrder_XYZ);
 
 		// X → Y → Z
-		Quaternion q5 = Quaternion::RotationAxis(Vector3(1, 0, 0), 0.2f);
-		q5.Multiply(Quaternion::RotationAxis(Vector3(0, 1, 0), 0.3f));
-		q5.Multiply(Quaternion::RotationAxis(Vector3(0, 0, 1), 0.4f));
+		Quaternion q5 = Quaternion::MakeFromRotationAxis(Vector3(1, 0, 0), 0.2f);
+		q5.Multiply(Quaternion::MakeFromRotationAxis(Vector3(0, 1, 0), 0.3f));
+		q5.Multiply(Quaternion::MakeFromRotationAxis(Vector3(0, 0, 1), 0.4f));
 		Vector3 r5 = q5.ToEulerAngles(RotationOrder_XYZ);
 		ASSERT_VEC3_NEAR(0.200000f, 0.300000f, 0.400000f, r5);
 
@@ -130,7 +130,7 @@ TEST_F(Test_Quaternion, Basic)
 	}
 	// this->ToAxisAngle
 	{
-		Quaternion q = Quaternion::RotationYawPitchRoll(1, 2, 3);
+		Quaternion q = Quaternion::MakeFromYawPitchRoll(1, 2, 3);
 		Vector3 axis;
 		float angle;
 		q.ToAxisAngle(&axis, &angle);
@@ -166,10 +166,10 @@ TEST_F(Test_Quaternion, Basic)
 		ASSERT_QUA_NEAR(0.201073, 0.372171, -0.511765, 0.747767, q1);
 		ASSERT_QUA_NEAR(0.182574, 0.365148, 0.547723, 0.730297, q2);
 	}
-	// Quaternion::Inverse
+	// Quaternion::MakeInverse
 	{
-		Quaternion q1 = Quaternion::Inverse(sample1);
-		Quaternion q2 = Quaternion::Inverse(sample2);
+		Quaternion q1 = Quaternion::MakeInverse(sample1);
+		Quaternion q2 = Quaternion::MakeInverse(sample2);
 		ASSERT_QUA_NEAR(-0.201073, -0.372171, 0.511765, 0.747767, q1);
 		ASSERT_QUA_NEAR(-0.033333, -0.066667, -0.100000, 0.133333, q2);
 	}
@@ -180,44 +180,44 @@ TEST_F(Test_Quaternion, Basic)
 		ASSERT_QUA_NEAR(-0.587985, 4.099200, 0.166267, 3.580948, q1);
 		ASSERT_QUA_NEAR(3.692100, 1.869235, 0.226216, 3.580948, q2);
 	}
-	// Quaternion::RotationAxis
+	// Quaternion::MakeFromRotationAxis
 	{
 		Vector3 axis1(0, 1, 0);
-		Quaternion q1 = Quaternion::RotationAxis(axis1, 0.5);
+		Quaternion q1 = Quaternion::MakeFromRotationAxis(axis1, 0.5);
 
 		Vector3 axis2(-1, 2, 3);
-		Quaternion q2 = Quaternion::RotationAxis(axis2, -0.75);
+		Quaternion q2 = Quaternion::MakeFromRotationAxis(axis2, -0.75);
 
 		ASSERT_QUA_NEAR(0.000000, 0.247404, 0.000000, 0.968912, q1);
 		ASSERT_QUA_NEAR(0.097890, -0.195781, -0.293671, 0.930508, q2);
 	}
-	// Quaternion::RotationYawPitchRoll
+	// Quaternion::MakeFromYawPitchRoll
 	{
-		Quaternion q = Quaternion::RotationYawPitchRoll(1, 2, 3);
+		Quaternion q = Quaternion::MakeFromYawPitchRoll(1, 2, 3);
 		ASSERT_QUA_NEAR(0.310622, -0.718287, 0.444435, 0.435953, q);
 	}
-	// Quaternion::RotationEulerAngles
+	// Quaternion::MakeFromEulerAngles
 	{
 		// デフォルト引数は RotationYawPitchRoll と同じ
-		Quaternion q1 = Quaternion::RotationEulerAngles(Vector3(2, 1, 3));
+		Quaternion q1 = Quaternion::MakeFromEulerAngles(Vector3(2, 1, 3));
 		ASSERT_QUA_NEAR(0.310622, -0.718287, 0.444435, 0.435953, q1);
 
 		// X → Y → Z
-		Quaternion q2 = Quaternion::RotationEulerAngles(Vector3(0.2f, 0.3f, 0.4f), RotationOrder_XYZ);
+		Quaternion q2 = Quaternion::MakeFromEulerAngles(Vector3(0.2f, 0.3f, 0.4f), RotationOrder_XYZ);
 		ASSERT_QUA_NEAR(0.067204, 0.165339, 0.180836, 0.967184, q2);
 
 		// Y → Z → X
-		Quaternion q3 = Quaternion::RotationEulerAngles(Vector3(0.2f, 0.3f, 0.4f), RotationOrder_YZX);
+		Quaternion q3 = Quaternion::MakeFromEulerAngles(Vector3(0.2f, 0.3f, 0.4f), RotationOrder_YZX);
 		ASSERT_QUA_NEAR(0.067204, 0.126117, 0.210079, 0.967184, q3);
 
 		// Z → X → Y
-		Quaternion q4 = Quaternion::RotationEulerAngles(Vector3(0.2f, 0.3f, 0.4f), RotationOrder_ZXY);
+		Quaternion q4 = Quaternion::MakeFromEulerAngles(Vector3(0.2f, 0.3f, 0.4f), RotationOrder_ZXY);
 		ASSERT_QUA_NEAR(0.126285, 0.126117, 0.180836, 0.967184, q4);
 	}
 	// Quaternion::Slerp
 	{
-		Quaternion q1 = Quaternion::RotationAxis(Vector3(0, 1, 0), 0.5f);
-		Quaternion q2 = Quaternion::RotationAxis(Vector3(0, 0, 1), -0.25f);
+		Quaternion q1 = Quaternion::MakeFromRotationAxis(Vector3(0, 1, 0), 0.5f);
+		Quaternion q2 = Quaternion::MakeFromRotationAxis(Vector3(0, 0, 1), -0.25f);
 		Quaternion q3 = Quaternion::Slerp(q1, q2, 0.75f);
 		ASSERT_QUA_NEAR(0.000000, 0.062610, -0.094040, 0.993598, q3);
 	}

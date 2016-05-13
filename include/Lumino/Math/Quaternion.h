@@ -168,13 +168,6 @@ public:
 		@return		2つのクォータニオンの内積
 	*/
 	static float Dot(const Quaternion& qua1, const Quaternion& qua2);
-	
-	/**
-		@brief		クォータニオンを共役し、再正規化します。
-		@param[in]	qua		: 処理の基になるクォータニオン
-		@return		逆数クォータニオン
-	*/
-	static Quaternion Inverse(const Quaternion& qua);
 
 	/**
 		@brief		2つのクォータニオンの積を計算します。
@@ -185,20 +178,27 @@ public:
 	static Quaternion Multiply(const Quaternion& qua1, const Quaternion& qua2);
 	
 	/**
+		@brief		クォータニオンを共役し、再正規化します。
+		@param[in]	qua		: 処理の基になるクォータニオン
+		@return		逆数クォータニオン
+	*/
+	static Quaternion MakeInverse(const Quaternion& qua);
+
+	/**
 		@brief		回転軸と角度を指定してクォータニオンを作成します。
 		@param[in]  axis	: 回転軸
 		@param[in]  r		: 回転角度 (ラジアン単位)
 		@return		新しく作成されたクォータニオン
 		@details	axis が単位ベクトルでなければ正規化してから計算を行います。
 	*/
-	static Quaternion RotationAxis(const Vector3& axis, float r);
+	static Quaternion MakeFromRotationAxis(const Vector3& axis, float r);
 	
 	/**
 		@brief		回転行列からクォータニオンを作成します。
 		@param[in]  mat		: 処理の基になる行列
 		@return		新しく作成されたクォータニオン
 	*/
-	static Quaternion RotationMatrix(const Matrix& mat);
+	static Quaternion MakeFromRotationMatrix(const Matrix& mat);
 	
 	/**
 		@brief		ヨー、ピッチ、ロールを指定してクォータニオンを作成します。
@@ -210,7 +210,7 @@ public:
 					これは  D3DXQuaternionRotationYawPitchRoll の回転順序と同じで、
 					RotationEulerAngles に RotationOrder_ZXY を指定して計算した結果とも同じです。
 	*/
-	static Quaternion RotationYawPitchRoll(float yaw, float pitch, float roll);
+	static Quaternion MakeFromYawPitchRoll(float yaw, float pitch, float roll);
 
 	/**
 		@brief		XYZ 各軸のオイラー角からクォータニオンを作成します。
@@ -218,7 +218,7 @@ public:
 		@param[in]  order	: 回転順序
 		@return		演算結果のクォータニオン
 	*/
-	static Quaternion RotationEulerAngles(const Vector3& angles, RotationOrder order = RotationOrder_ZXY);
+	static Quaternion MakeFromEulerAngles(const Vector3& angles, RotationOrder order = RotationOrder_ZXY);
 
 	/**
 		@brief		球面線形補間を使用して、2 つのクオータニオン間を補間します。

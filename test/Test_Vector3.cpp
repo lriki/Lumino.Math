@@ -62,9 +62,9 @@ TEST_F(Test_Vector3, Basic)
 	// this->TransformCoord
 	{
 		Matrix m =
-			Matrix::RotationYawPitchRoll(1, 2, 3) *
-			Matrix::LookAtLH(Vector3(1, 2, 3), Vector3(4, 5, 6), Vector3(0, 1, 0)) *
-			Matrix::PerspectiveFovLH(1.3f, 1.5f, 1.0f, 100.0f);
+			Matrix::MakeRotationYawPitchRoll(1, 2, 3) *
+			Matrix::MakeLookAtLH(Vector3(1, 2, 3), Vector3(4, 5, 6), Vector3(0, 1, 0)) *
+			Matrix::MakePerspectiveFovLH(1.3f, 1.5f, 1.0f, 100.0f);
 		Vector3 v1 = sample1;
 		v1.TransformCoord(m);
 		ASSERT_VEC3_NEAR(0.058951, 0.021860, 1.160729, v1);
@@ -117,18 +117,18 @@ TEST_F(Test_Vector3, Basic)
 	// Vector3::Transform
 	{
 		Matrix m = 
-			Matrix::RotationYawPitchRoll(1, 2, 3) * 
-			Matrix::LookAtLH(Vector3(1, 2, 3), Vector3(4, 5, 6), Vector3(0, 1, 0)) *
-			Matrix::PerspectiveFovLH(1.3f, 1.5f, 1.0f, 100.0f);
+			Matrix::MakeRotationYawPitchRoll(1, 2, 3) *
+			Matrix::MakeLookAtLH(Vector3(1, 2, 3), Vector3(4, 5, 6), Vector3(0, 1, 0)) *
+			Matrix::MakePerspectiveFovLH(1.3f, 1.5f, 1.0f, 100.0f);
 		Vector4 v1 = Vector3::Transform(sample1, m);
 		ASSERT_VEC4_NEAR(-0.395318, -0.146594, -7.783754, -6.705917, v1);
 	}
 	// Vector3::TransformCoord
 	{
 		Matrix m =
-			Matrix::RotationYawPitchRoll(1, 2, 3) *
-			Matrix::LookAtLH(Vector3(1, 2, 3), Vector3(4, 5, 6), Vector3(0, 1, 0)) *
-			Matrix::PerspectiveFovLH(1.3f, 1.5f, 1.0f, 100.0f);
+			Matrix::MakeRotationYawPitchRoll(1, 2, 3) *
+			Matrix::MakeLookAtLH(Vector3(1, 2, 3), Vector3(4, 5, 6), Vector3(0, 1, 0)) *
+			Matrix::MakePerspectiveFovLH(1.3f, 1.5f, 1.0f, 100.0f);
 		Vector3 v1 = Vector3::TransformCoord(sample1, m);
 		ASSERT_VEC3_NEAR(0.058951, 0.021860, 1.160729, v1);
 	}
@@ -163,9 +163,9 @@ TEST_F(Test_Vector3, Basic)
 	// Vector3::Project / Unproject
 	{
 		Matrix m =
-			Matrix::RotationYawPitchRoll(1, 2, 3) *
-			Matrix::LookAtLH(Vector3(1, 2, 3), Vector3(4, 5, 6), Vector3(0, 1, 0)) *
-			Matrix::PerspectiveFovLH(1.3f, 1.5f, 1.0f, 100.0f);
+			Matrix::MakeRotationYawPitchRoll(1, 2, 3) *
+			Matrix::MakeLookAtLH(Vector3(1, 2, 3), Vector3(4, 5, 6), Vector3(0, 1, 0)) *
+			Matrix::MakePerspectiveFovLH(1.3f, 1.5f, 1.0f, 100.0f);
 		Vector3 v1(1, 2, 3);
 		Vector3 v;
 		v = Vector3::Project(v1, m, 0, 0, 640, 480);

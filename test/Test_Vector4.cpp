@@ -84,7 +84,7 @@ TEST_F(Test_Vector4, Basic)
 	}
 	// Vector4::Transform
 	{
-		Matrix m = Matrix::RotationYawPitchRoll(1, 2, 3);
+		Matrix m = Matrix::MakeRotationYawPitchRoll(1, 2, 3);
 		Vector4 v1 = Vector4::Transform(sample1, m);
 		ASSERT_VEC4_NEAR(-3.144919, -1.962654, -0.507415, 4.000000, v1);
 	}
