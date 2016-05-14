@@ -66,9 +66,10 @@ public:
 	/**
 		@brief		‘ä‚Ìw’è‚µ‚½–Ê‚ğæ“¾‚µ‚Ü‚·B
 	*/
-	const Plane& GetPlane(FrustumPlane plane) const { return m_planes[plane]; }
+	const Plane& GetPlane(FrustumPlane plane) const { return m_planes[static_cast<int>(plane)]; }
 
 private:
+	static const int FrustumPlane_Max = 6;
 	Plane		m_planes[FrustumPlane_Max];
 	Matrix		m_viewProjMatrix;
 };

@@ -89,19 +89,19 @@ TEST_F(Test_Quaternion, Basic)
 	{
 		Quaternion q1 = Quaternion::MakeFromYawPitchRoll(0.5, 0.75, 1.0);
 		Vector3 r1 = q1.ToEulerAngles();
-		Vector3 r2 = q1.ToEulerAngles(RotationOrder_XYZ);
-		Vector3 r3 = q1.ToEulerAngles(RotationOrder_YZX);
+		Vector3 r2 = q1.ToEulerAngles(RotationOrder::XYZ);
+		Vector3 r3 = q1.ToEulerAngles(RotationOrder::YZX);
 
 		Quaternion q2 = Quaternion::MakeFromYawPitchRoll(0, 0.75, 0);
 		q2.Multiply(Quaternion::MakeFromYawPitchRoll(0.25, 0, 0));
 		q2.Multiply(Quaternion::MakeFromYawPitchRoll(0, 0, 0.5));
-		Vector3 r4 = q2.ToEulerAngles(RotationOrder_XYZ);
+		Vector3 r4 = q2.ToEulerAngles(RotationOrder::XYZ);
 
 		// X Å® Y Å® Z
 		Quaternion q5 = Quaternion::MakeFromRotationAxis(Vector3(1, 0, 0), 0.2f);
 		q5.Multiply(Quaternion::MakeFromRotationAxis(Vector3(0, 1, 0), 0.3f));
 		q5.Multiply(Quaternion::MakeFromRotationAxis(Vector3(0, 0, 1), 0.4f));
-		Vector3 r5 = q5.ToEulerAngles(RotationOrder_XYZ);
+		Vector3 r5 = q5.ToEulerAngles(RotationOrder::XYZ);
 		ASSERT_VEC3_NEAR(0.200000f, 0.300000f, 0.400000f, r5);
 
 		// X Å® Y Å® Z
@@ -109,7 +109,7 @@ TEST_F(Test_Quaternion, Basic)
 		q6.RotateX(0.2f);
 		q6.RotateY(0.3f);
 		q6.RotateZ(0.4f);
-		Vector3 r6 = q6.ToEulerAngles(RotationOrder_XYZ);
+		Vector3 r6 = q6.ToEulerAngles(RotationOrder::XYZ);
 		ASSERT_VEC3_NEAR(0.200000f, 0.300000f, 0.400000f, r6);
 
 		// Y Å® Z Å® X
@@ -117,7 +117,7 @@ TEST_F(Test_Quaternion, Basic)
 		q7.RotateY(0.3f);
 		q7.RotateZ(0.4f);
 		q7.RotateX(0.2f);
-		Vector3 r7 = q7.ToEulerAngles(RotationOrder_YZX);
+		Vector3 r7 = q7.ToEulerAngles(RotationOrder::YZX);
 		ASSERT_VEC3_NEAR(0.200000f, 0.300000f, 0.400000f, r7);
 
 		// Z Å® X Å® Y
@@ -125,7 +125,7 @@ TEST_F(Test_Quaternion, Basic)
 		q8.RotateZ(0.4f);
 		q8.RotateX(0.2f);
 		q8.RotateY(0.3f);
-		Vector3 r8 = q8.ToEulerAngles(RotationOrder_ZXY);
+		Vector3 r8 = q8.ToEulerAngles(RotationOrder::ZXY);
 		ASSERT_VEC3_NEAR(0.200000f, 0.300000f, 0.400000f, r8);
 	}
 	// this->ToAxisAngle
@@ -203,15 +203,15 @@ TEST_F(Test_Quaternion, Basic)
 		ASSERT_QUA_NEAR(0.310622, -0.718287, 0.444435, 0.435953, q1);
 
 		// X Å® Y Å® Z
-		Quaternion q2 = Quaternion::MakeFromEulerAngles(Vector3(0.2f, 0.3f, 0.4f), RotationOrder_XYZ);
+		Quaternion q2 = Quaternion::MakeFromEulerAngles(Vector3(0.2f, 0.3f, 0.4f), RotationOrder::XYZ);
 		ASSERT_QUA_NEAR(0.067204, 0.165339, 0.180836, 0.967184, q2);
 
 		// Y Å® Z Å® X
-		Quaternion q3 = Quaternion::MakeFromEulerAngles(Vector3(0.2f, 0.3f, 0.4f), RotationOrder_YZX);
+		Quaternion q3 = Quaternion::MakeFromEulerAngles(Vector3(0.2f, 0.3f, 0.4f), RotationOrder::YZX);
 		ASSERT_QUA_NEAR(0.067204, 0.126117, 0.210079, 0.967184, q3);
 
 		// Z Å® X Å® Y
-		Quaternion q4 = Quaternion::MakeFromEulerAngles(Vector3(0.2f, 0.3f, 0.4f), RotationOrder_ZXY);
+		Quaternion q4 = Quaternion::MakeFromEulerAngles(Vector3(0.2f, 0.3f, 0.4f), RotationOrder::ZXY);
 		ASSERT_QUA_NEAR(0.126285, 0.126117, 0.180836, 0.967184, q4);
 	}
 	// Quaternion::Slerp

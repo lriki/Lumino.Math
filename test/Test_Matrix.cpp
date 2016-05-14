@@ -119,7 +119,7 @@ TEST_F(Test_Matrix, Basic)
 	// Matrix::RotationEulerAngles
 	{
 		Matrix m;
-		m.RotateEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder_XYZ);
+		m.RotateEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder::XYZ);
 		ASSERT_MAT_NEAR(
 			0.038219, 0.538949, -0.841471, 0.000000,
 			-0.846847, 0.464490, 0.259035, 0.000000,
@@ -136,7 +136,7 @@ TEST_F(Test_Matrix, Basic)
 		//	m);
 		
 		m = Matrix::Identity;
-		m.RotateEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder_YZX);
+		m.RotateEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder::YZX);
 		ASSERT_MAT_NEAR(
 			0.038219, 0.876395, -0.480074, 0.000000,
 			-0.997495, 0.062078, 0.033913, 0.000000,
@@ -145,7 +145,7 @@ TEST_F(Test_Matrix, Basic)
 			m);
 
 		m = Matrix::Identity;
-		m.RotateEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder_ZXY);
+		m.RotateEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder::ZXY);
 		ASSERT_MAT_NEAR(
 			0.440632, 0.875384, 0.198863, 0.000000,
 			-0.510412, 0.062078, 0.857686, 0.000000,
@@ -270,18 +270,18 @@ TEST_F(Test_Matrix, Basic)
 		ASSERT_VEC3_NEAR(0.5, 0.75, 1.0, angles);
 
 		// XYZ
-		m = Matrix::MakeRotationEulerAngles(Vector3(0.5, 0.75, 1.0), RotationOrder_XYZ);
-		angles = m.ToEulerAngles(RotationOrder_XYZ);
+		m = Matrix::MakeRotationEulerAngles(Vector3(0.5, 0.75, 1.0), RotationOrder::XYZ);
+		angles = m.ToEulerAngles(RotationOrder::XYZ);
 		ASSERT_VEC3_NEAR(0.5, 0.75, 1.0, angles);
 
 		// YZX
-		m = Matrix::MakeRotationEulerAngles(Vector3(0.5, 0.75, 1.0), RotationOrder_YZX);
-		angles = m.ToEulerAngles(RotationOrder_YZX);
+		m = Matrix::MakeRotationEulerAngles(Vector3(0.5, 0.75, 1.0), RotationOrder::YZX);
+		angles = m.ToEulerAngles(RotationOrder::YZX);
 		ASSERT_VEC3_NEAR(0.5, 0.75, 1.0, angles);
 
 		// ZXY
-		m = Matrix::MakeRotationEulerAngles(Vector3(0.5, 0.75, 1.0), RotationOrder_ZXY);
-		angles = m.ToEulerAngles(RotationOrder_ZXY);
+		m = Matrix::MakeRotationEulerAngles(Vector3(0.5, 0.75, 1.0), RotationOrder::ZXY);
+		angles = m.ToEulerAngles(RotationOrder::ZXY);
 		ASSERT_VEC3_NEAR(0.5, 0.75, 1.0, angles);
 	}
 	// this->GetRotationMatrix
@@ -382,7 +382,7 @@ TEST_F(Test_Matrix, Basic)
 	// Matrix::MakeRotationEulerAngles
 	{
 		Matrix m;
-		m = Matrix::MakeRotationEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder_XYZ);
+		m = Matrix::MakeRotationEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder::XYZ);
 		ASSERT_MAT_NEAR(
 			0.038219, 0.538949, -0.841471, 0.000000,
 			-0.846847, 0.464490, 0.259035, 0.000000,
@@ -390,7 +390,7 @@ TEST_F(Test_Matrix, Basic)
 			0.000000, 0.000000, 0.000000, 1.000000,
 			m);
 
-		//m = Matrix::RotationEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder_XZY);
+		//m = Matrix::RotationEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder::XZY);
 		//ASSERT_MAT_NEAR(
 		//	0.038219, 0.997495, -0.059523, 0.000000,
 		//	-0.069549, 0.062078, 0.995645, 0.000000,
@@ -398,7 +398,7 @@ TEST_F(Test_Matrix, Basic)
 		//	0.000000, 0.000000, 0.000000, 1.000000,
 		//	m);
 
-		m = Matrix::MakeRotationEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder_YZX);
+		m = Matrix::MakeRotationEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder::YZX);
 		ASSERT_MAT_NEAR(
 			0.038219, 0.876395, -0.480074, 0.000000,
 			-0.997495, 0.062078, 0.033913, 0.000000,
@@ -406,7 +406,7 @@ TEST_F(Test_Matrix, Basic)
 			0.000000, 0.000000, 0.000000, 1.000000,
 			m);
 
-		m = Matrix::MakeRotationEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder_ZXY);
+		m = Matrix::MakeRotationEulerAngles(Vector3(0.5, 1.0, 1.5), RotationOrder::ZXY);
 		ASSERT_MAT_NEAR(
 			0.440632, 0.875384, 0.198863, 0.000000,
 			-0.510412, 0.062078, 0.857686, 0.000000,

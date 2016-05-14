@@ -22,12 +22,12 @@ ViewFrustum::ViewFrustum(const Matrix& viewProjMatrix)
 //------------------------------------------------------------------------------
 void ViewFrustum::SetViewProjMatrix(const Matrix& mat)
 {
-	m_planes[FrustumPlane_Near] = Plane(-mat.m13, -mat.m23, -mat.m33, -mat.m43);
-	m_planes[FrustumPlane_Far] = Plane(-mat.m14 + mat.m13, -mat.m24 + mat.m23, -mat.m34 + mat.m33, -mat.m44 + mat.m43);
-	m_planes[FrustumPlane_Left] = Plane(-mat.m14 - mat.m11, -mat.m24 - mat.m21, -mat.m34 - mat.m31, -mat.m44 - mat.m41);
-	m_planes[FrustumPlane_Right] = Plane(-mat.m14 + mat.m11, -mat.m24 + mat.m21, -mat.m34 + mat.m31, -mat.m44 + mat.m41);
-	m_planes[FrustumPlane_Top] = Plane(-mat.m14 + mat.m12, -mat.m24 + mat.m22, -mat.m34 + mat.m32, -mat.m44 + mat.m42);
-	m_planes[FrustumPlane_Bottom] = Plane(-mat.m14 - mat.m12, -mat.m24 - mat.m22, -mat.m34 - mat.m32, -mat.m44 - mat.m42);
+	m_planes[static_cast<int>(FrustumPlane::Near)] = Plane(-mat.m13, -mat.m23, -mat.m33, -mat.m43);
+	m_planes[static_cast<int>(FrustumPlane::Far)] = Plane(-mat.m14 + mat.m13, -mat.m24 + mat.m23, -mat.m34 + mat.m33, -mat.m44 + mat.m43);
+	m_planes[static_cast<int>(FrustumPlane::Left)] = Plane(-mat.m14 - mat.m11, -mat.m24 - mat.m21, -mat.m34 - mat.m31, -mat.m44 - mat.m41);
+	m_planes[static_cast<int>(FrustumPlane::Right)] = Plane(-mat.m14 + mat.m11, -mat.m24 + mat.m21, -mat.m34 + mat.m31, -mat.m44 + mat.m41);
+	m_planes[static_cast<int>(FrustumPlane::Top)] = Plane(-mat.m14 + mat.m12, -mat.m24 + mat.m22, -mat.m34 + mat.m32, -mat.m44 + mat.m42);
+	m_planes[static_cast<int>(FrustumPlane::Bottom)] = Plane(-mat.m14 - mat.m12, -mat.m24 - mat.m22, -mat.m34 - mat.m32, -mat.m44 - mat.m42);
 
 	for (int i = 0; i < FrustumPlane_Max; ++i)
 	{

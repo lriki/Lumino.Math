@@ -122,7 +122,7 @@ public:
 					例えば RotationYawPitchRoll() は、回転軸 Z → Y → X の順に回転を行いますが、
 					これから元の角度を取り出すには RotationOrder_ZXY を指定します。
 	*/
-	Vector3 ToEulerAngles(RotationOrder order = RotationOrder_ZXY, bool* locked = NULL) const;
+	Vector3 ToEulerAngles(RotationOrder order = RotationOrder::ZXY, bool* locked = nullptr) const;
 
 	/**
 		@brief		このクォータニオンの回転軸と回転角度を取得します。
@@ -143,7 +143,7 @@ public:
 		@param[in]	stream	: 出力先ストリーム
 		@details	format が NULL の場合、書式は "(%f, %f, %f, %f)\n" を使用します。
 	*/
-	void Print(const char* format = NULL, FILE* stream = NULL) const;
+	void Print(const char* format = nullptr, FILE* stream = nullptr) const;
 
 public:
 
@@ -218,7 +218,7 @@ public:
 		@param[in]  order	: 回転順序
 		@return		演算結果のクォータニオン
 	*/
-	static Quaternion MakeFromEulerAngles(const Vector3& angles, RotationOrder order = RotationOrder_ZXY);
+	static Quaternion MakeFromEulerAngles(const Vector3& angles, RotationOrder order = RotationOrder::ZXY);
 
 	/**
 		@brief		球面線形補間を使用して、2 つのクオータニオン間を補間します。

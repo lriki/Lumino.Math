@@ -26,30 +26,25 @@
 	
 LN_NAMESPACE_BEGIN
 
-/// 回転順序
-enum RotationOrder
+/** 回転順序 */
+enum class RotationOrder
 {
-	RotationOrder_XYZ = 0,		///< X → Y → Z
-	//RotationOrder_XZY,		///< X → Z → Y 
-	//RotationOrder_YXZ,		///< Y → X → Z
-	RotationOrder_YZX,			///< Y → Z → X
-	RotationOrder_ZXY,			///< Z → X → Y (RotationYawPitchRoll)
-	//RotationOrder_ZYX,		///< Z → Y → X
+	XYZ,			/**< X → Y → Z */
+	YZX,			/**< Y → Z → X */
+	ZXY,			/**< Z → X → Y (RotationYawPitchRoll) */
 };
 
-/// 錐台の各面
-enum FrustumPlane
+/** 錐台の各面 */
+enum class FrustumPlane
 {
-	FrustumPlane_Near = 0,
-	FrustumPlane_Far,
-	FrustumPlane_Left,
-	FrustumPlane_Right,
-	FrustumPlane_Top,
-	FrustumPlane_Bottom,
-
-	FrustumPlane_Max,
+	Near	= 0,
+	Far		= 1,
+	Left	= 2,
+	Right	= 3,
+	Top		= 4,
+	Bottom	= 5,
 };
 
 LN_NAMESPACE_END
 
-#endif // __LUMINO_MATH_COMMON_H__
+#endif // LUMINO_MATH_COMMON_H

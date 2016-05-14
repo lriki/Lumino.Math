@@ -547,15 +547,15 @@ void Matrix::RotateEulerAngles(const Vector3& angles, RotationOrder order)
 {
 	switch (order)
 	{
-	case RotationOrder_XYZ:
-		RotateX(angles.x); RotateY(angles.y); RotateZ(angles.z); break;
-	case RotationOrder_YZX:
-		RotateY(angles.y); RotateZ(angles.z); RotateX(angles.x); break;
-	case RotationOrder_ZXY:
-		RotateZ(angles.z); RotateX(angles.x); RotateY(angles.y); break;	// RotationYawPitchRoll
-	default:
-		assert(0);
-		break;
+		case RotationOrder::XYZ:
+			RotateX(angles.x); RotateY(angles.y); RotateZ(angles.z); break;
+		case RotationOrder::YZX:
+			RotateY(angles.y); RotateZ(angles.z); RotateX(angles.x); break;
+		case RotationOrder::ZXY:
+			RotateZ(angles.z); RotateX(angles.x); RotateY(angles.y); break;	// RotationYawPitchRoll
+		default:
+			assert(0);
+			break;
 	}
 }
 
@@ -938,18 +938,18 @@ static bool EulerAnglesXYZ(const Matrix& mat, float* xRot, float* yRot, float* z
 	{
 		*xRot = 0.0f;
 		*yRot = (mat.m[0][2] < 0 ? Math::PIOver2 : -Math::PIOver2);
-		*zRot = -atan2(-mat.m[1][0], mat.m[1][1]);
+		*zRot = -atan2f(-mat.m[1][0], mat.m[1][1]);
 		return false;
 	}
 
-	*yRot = -asin(mat.m[0][2]);
-	*xRot = asin(mat.m[1][2] / cos(*yRot));
+	*yRot = -asinf(mat.m[0][2]);
+	*xRot = asinf(mat.m[1][2] / cosf(*yRot));
 
 	if (Math::IsNaN(*xRot))	// ジンバルロック判定
 	{
 		*xRot = 0.0f;
 		*yRot = (mat.m[0][2] < 0 ? Math::PIOver2 : -Math::PIOver2);
-		*zRot = -atan2(-mat.m[1][0], mat.m[1][1]);
+		*zRot = -atan2f(-mat.m[1][0], mat.m[1][1]);
 		return false;
 	}
 
@@ -957,7 +957,7 @@ static bool EulerAnglesXYZ(const Matrix& mat, float* xRot, float* yRot, float* z
 		*xRot = Math::PI - (*xRot);
 	}
 
-	*zRot = atan2(mat.m[0][1], mat.m[0][0]);
+	*zRot = atan2f(mat.m[0][1], mat.m[0][0]);
 	return true;
 }
 
@@ -967,18 +967,18 @@ static bool EulerAnglesYZX(const Matrix& mat, float* xRot, float* yRot, float* z
 
 	if (mat.m[1][0] > 1.0f - Threshold || mat.m[1][0] < -1.0f + Threshold)	// ジンバルロック判定
 	{
-		*xRot = -atan2(-mat.m[2][1], mat.m[2][2]);
+		*xRot = -atan2f(-mat.m[2][1], mat.m[2][2]);
 		*yRot = 0.0f;
 		*zRot = (mat.m[1][0] < 0 ? Math::PIOver2 : -Math::PIOver2);
 		return false;
 	}
 
-	*zRot = -asin(mat.m[1][0]);
-	*yRot = asin(mat.m[2][0] / cos(*zRot));
+	*zRot = -asinf(mat.m[1][0]);
+	*yRot = asinf(mat.m[2][0] / cosf(*zRot));
 
 	if (Math::IsNaN(*yRot))	// ジンバルロック判定
 	{
-		*xRot = -atan2(-mat.m[2][1], mat.m[2][2]);
+		*xRot = -atan2f(-mat.m[2][1], mat.m[2][2]);
 		*yRot = 0.0f;
 		*zRot = (mat.m[1][0] < 0 ? Math::PIOver2 : -Math::PIOver2);
 		return false;
@@ -988,7 +988,7 @@ static bool EulerAnglesYZX(const Matrix& mat, float* xRot, float* yRot, float* z
 		*yRot = Math::PI - (*yRot);
 	}
 
-	*xRot = atan2(mat.m[1][2], mat.m[1][1]);
+	*xRot = atan2f(mat.m[1][2], mat.m[1][1]);
 	return true;
 }
 
@@ -1032,21 +1032,21 @@ Vector3 Matrix::ToEulerAngles(RotationOrder order, bool* locked_) const
 	float xRot, yRot, zRot;
 	switch (order)
 	{
-	case RotationOrder_XYZ:
-		locked = EulerAnglesXYZ(*this, &xRot, &yRot, &zRot);
-		break;
-	//case RotationOrder_XZY: break;
-	//case RotationOrder_YXZ: break;
-	case RotationOrder_YZX:
-		locked = EulerAnglesYZX(*this, &xRot, &yRot, &zRot);
-		break;
-	case RotationOrder_ZXY:
-		locked = EulerAnglesZXY(*this, &xRot, &yRot, &zRot);	// RotationYawPitchRoll
-		break;
-	//case RotationOrder_ZYX: break;
-	default:
-		assert(0);
-		return Vector3();
+		case RotationOrder::XYZ:
+			locked = EulerAnglesXYZ(*this, &xRot, &yRot, &zRot);
+			break;
+		//case RotationOrder_XZY: break;
+		//case RotationOrder_YXZ: break;
+		case RotationOrder::YZX:
+			locked = EulerAnglesYZX(*this, &xRot, &yRot, &zRot);
+			break;
+		case RotationOrder::ZXY:
+			locked = EulerAnglesZXY(*this, &xRot, &yRot, &zRot);	// RotationYawPitchRoll
+			break;
+		//case RotationOrder_ZYX: break;
+		default:
+			assert(0);
+			return Vector3();
 	}
 
 	if (locked_ != NULL) { *locked_ = locked; }
@@ -1220,21 +1220,21 @@ Matrix Matrix::MakeRotationEulerAngles(const Vector3& angles, RotationOrder orde
 	Matrix m;
 	switch (order)
 	{
-	case RotationOrder_XYZ:
-		m.RotateX(angles.x); m.RotateY(angles.y); m.RotateZ(angles.z); break;
-	//case RotationOrder_XZY:
-	//	m.RotateX(angles.X); m.RotateZ(angles.Z); m.RotateY(angles.Y); break;
-	//case RotationOrder_YXZ:
-	//	m.RotateY(angles.Y); m.RotateX(angles.X); m.RotateZ(angles.Z); break;
-	case RotationOrder_YZX:
-		m.RotateY(angles.y); m.RotateZ(angles.z); m.RotateX(angles.x); break;
-	case RotationOrder_ZXY:
-		m.RotateZ(angles.z); m.RotateX(angles.x); m.RotateY(angles.y); break;	// RotationYawPitchRoll
-	//case RotationOrder_ZYX:
-	//	m.RotateZ(angles.Z); m.RotateY(angles.Y); m.RotateX(angles.X); break;
-	default:
-		assert(0);
-		return m;
+		case RotationOrder::XYZ:
+			m.RotateX(angles.x); m.RotateY(angles.y); m.RotateZ(angles.z); break;
+		//case RotationOrder_XZY:
+		//	m.RotateX(angles.X); m.RotateZ(angles.Z); m.RotateY(angles.Y); break;
+		//case RotationOrder_YXZ:
+		//	m.RotateY(angles.Y); m.RotateX(angles.X); m.RotateZ(angles.Z); break;
+		case RotationOrder::YZX:
+			m.RotateY(angles.y); m.RotateZ(angles.z); m.RotateX(angles.x); break;
+		case RotationOrder::ZXY:
+			m.RotateZ(angles.z); m.RotateX(angles.x); m.RotateY(angles.y); break;	// RotationYawPitchRoll
+		//case RotationOrder_ZYX:
+		//	m.RotateZ(angles.Z); m.RotateY(angles.Y); m.RotateX(angles.X); break;
+		default:
+			assert(0);
+			return m;
 	}
 	return m;
 }
@@ -1247,15 +1247,15 @@ Matrix Matrix::MakeRotationEulerAngles(float x, float y, float z, RotationOrder 
 	Matrix m;
 	switch (order)
 	{
-	case RotationOrder_XYZ:
-		m.RotateX(x); m.RotateY(y); m.RotateZ(z); break;
-	case RotationOrder_YZX:
-		m.RotateY(y); m.RotateZ(z); m.RotateX(y); break;
-	case RotationOrder_ZXY:
-		m.RotateZ(z); m.RotateX(x); m.RotateY(y); break;	// RotationYawPitchRoll
-	default:
-		assert(0);
-		return m;
+		case RotationOrder::XYZ:
+			m.RotateX(x); m.RotateY(y); m.RotateZ(z); break;
+		case RotationOrder::YZX:
+			m.RotateY(y); m.RotateZ(z); m.RotateX(y); break;
+		case RotationOrder::ZXY:
+			m.RotateZ(z); m.RotateX(x); m.RotateY(y); break;	// RotationYawPitchRoll
+		default:
+			assert(0);
+			return m;
 	}
 	return m;
 }
@@ -1555,7 +1555,7 @@ Matrix Matrix::MakeLookAtRH(const Vector3& position, const Vector3& lookAt, cons
 //------------------------------------------------------------------------------
 Matrix Matrix::MakePerspectiveFovLH(float fovY, float aspect, float near, float far)
 {
-	float h = 1.f / tan(fovY * 0.5f);	// cot(fovY/2)
+	float h = 1.f / tanf(fovY * 0.5f);	// cot(fovY/2)
 	return Matrix(
 		h / aspect, 0.0f, 0.0f, 0.0f,
 		0.0f, h, 0.0f, 0.0f,
@@ -1568,7 +1568,7 @@ Matrix Matrix::MakePerspectiveFovLH(float fovY, float aspect, float near, float 
 //------------------------------------------------------------------------------
 Matrix Matrix::MakePerspectiveFovRH(float fovY, float aspect, float near, float far)
 {
-	float h = 1.f / tan(fovY * 0.5f);	// cot(fovY/2)
+	float h = 1.f / tanf(fovY * 0.5f);	// cot(fovY/2)
 	return Matrix(
 		h / aspect, 0.0f, 0.0f, 0.0f,
 		0.0f, h, 0.0f, 0.0f,

@@ -165,7 +165,7 @@ public:
 		@param[in]  order	: 回転順序
 		@return		演算結果の行列
 	*/
-	void RotateEulerAngles(float x, float y, float z, RotationOrder order = RotationOrder_ZXY);
+	void RotateEulerAngles(float x, float y, float z, RotationOrder order = RotationOrder::ZXY);
 
 	/**
 		@brief		この行列を XYZ 各軸のオイラー角を指定して回転します。
@@ -173,7 +173,7 @@ public:
 		@param[in]  order	: 回転順序
 		@return		演算結果の行列
 	*/
-	void RotateEulerAngles(const Vector3& angles, RotationOrder order = RotationOrder_ZXY);
+	void RotateEulerAngles(const Vector3& angles, RotationOrder order = RotationOrder::ZXY);
 
 	/**
 		@brief		この行列を任意軸で回転します。
@@ -246,7 +246,7 @@ public:
 					例えば RotationYawPitchRoll() は、回転軸 Z → Y → X の順に回転を行いますが、
 					これから元の角度を取り出すには RotationOrder_ZXY を指定します。
 	*/
-	Vector3 ToEulerAngles(RotationOrder order = RotationOrder_ZXY, bool* locked = NULL) const;
+	Vector3 ToEulerAngles(RotationOrder order = RotationOrder::ZXY, bool* locked = nullptr) const;
 	
 	/**
 		@brief		この行列の行要から回転行列を取り出します。
@@ -339,7 +339,7 @@ public:
 		@param[in]  order	: 回転順序
 		@return		演算結果の行列
 	*/
-	static Matrix MakeRotationEulerAngles(float x, float y, float z, RotationOrder order = RotationOrder_ZXY);
+	static Matrix MakeRotationEulerAngles(float x, float y, float z, RotationOrder order = RotationOrder::ZXY);
 
 	/**
 		@brief		XYZ 各軸のオイラー角から回転行列を作成します。
@@ -347,7 +347,7 @@ public:
 		@param[in]  order	: 回転順序
 		@return		演算結果の行列
 	*/
-	static Matrix MakeRotationEulerAngles(const Vector3& angles, RotationOrder order = RotationOrder_ZXY);
+	static Matrix MakeRotationEulerAngles(const Vector3& angles, RotationOrder order = RotationOrder::ZXY);
 
 	/**
 		@brief		ヨー、ピッチ、ロールを指定して行列を作成します。

@@ -150,7 +150,7 @@ void Quaternion::ToAxisAngle(Vector3* axis, float* angle) const
 	}
 	if (angle)
 	{
-		*angle = 2.0f * acos(q.w);
+		*angle = 2.0f * acosf(q.w);
 	}
 }
 
@@ -345,18 +345,18 @@ Quaternion Quaternion::MakeFromEulerAngles(const Vector3& angles, RotationOrder 
 	Quaternion q;
 	switch (order)
 	{
-	case RotationOrder_XYZ:
-		q.RotateX(angles.x); q.RotateY(angles.y); q.RotateZ(angles.z);
-		break;
-	case RotationOrder_YZX:
-		q.RotateY(angles.y); q.RotateZ(angles.z); q.RotateX(angles.x);
-		break;
-	case RotationOrder_ZXY:
-		q.RotateZ(angles.z); q.RotateX(angles.x); q.RotateY(angles.y);
-		break;
-	default:
-		assert(0);
-		break;
+		case RotationOrder::XYZ:
+			q.RotateX(angles.x); q.RotateY(angles.y); q.RotateZ(angles.z);
+			break;
+		case RotationOrder::YZX:
+			q.RotateY(angles.y); q.RotateZ(angles.z); q.RotateX(angles.x);
+			break;
+		case RotationOrder::ZXY:
+			q.RotateZ(angles.z); q.RotateX(angles.x); q.RotateY(angles.y);
+			break;
+		default:
+			assert(0);
+			break;
 	}
 	return q;
 }
@@ -384,11 +384,11 @@ Quaternion Quaternion::Slerp(const Quaternion& qua1, const Quaternion& qua2, flo
 	}
 	else
 	{
-		float ac = acos(dot);
-		float invSin = (1.0f / sin(ac));
+		float ac = acosf(dot);
+		float invSin = (1.0f / sinf(ac));
 
-		inverse = (sin((1.0f - t) * ac)) * invSin;
-		opposite = flag ? ((-sin(t * ac)) * invSin) : ((sin(t * ac)) * invSin);
+		inverse = (sinf((1.0f - t) * ac)) * invSin;
+		opposite = flag ? ((-sinf(t * ac)) * invSin) : ((sinf(t * ac)) * invSin);
 	}
 
 	return Quaternion(
