@@ -13,7 +13,7 @@ public:
 	/// sqrt
 	static inline float sqrt( float r )
 	{
-	#ifdef _MSC_VER
+#if defined(_MSC_VER) && !defined(_WIN64)
 		__asm
 		{
 			fld		r
@@ -23,15 +23,15 @@ public:
 
 		return r;
 
-	#else
+#else
 		return ::sqrt( r );
-	#endif
+#endif
 	}
 
 	/// sincos
 	static inline void sincos(float r_, float* sin_, float* cos_)
 	{
-	#ifdef _MSC_VER
+#if defined(_MSC_VER) && !defined(_WIN64)
 		float ts, tc;
 
 		__asm
@@ -44,10 +44,10 @@ public:
 
 		*sin_ = ts;
 		*cos_ = tc;
-	#else
+#else
 		*sin_ = sin( r_ );
 		*cos_ = cos( r_ );
-	#endif
+#endif
 	}
 };
 
