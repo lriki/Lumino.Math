@@ -1,4 +1,5 @@
-
+﻿
+#include <math.h>
 #include "../../include/Lumino/Math/Vector3.h"
 #include "../../include/Lumino/Math/Vector4.h"
 #include "../../include/Lumino/Math/Matrix.h"
@@ -61,13 +62,35 @@ void Plane::Normalize()
 //------------------------------------------------------------------------------
 bool Plane::Intersects(const Vector3& start, const Vector3& end, Vector3* point) const
 {
-	Vector3 direction = end - start;
-	float dot = Vector3::Dot(Normal, direction);
-	if ( dot == 0.0f ) return false;
+	Vector3 p = Vector3(Normal.x * D, Normal.y * D, Normal.z * D);
+	Vector3 pa = p - start;
+	Vector3 pb = p - end;
+	float dot_pa = Vector3::Dot(pa, Normal);
+	float dot_pb = Vector3::Dot(pb, Normal);
 
-	if (point != NULL)
+	// 交差判定
+	if (dot_pa == 0.0 && dot_pb == 0.0)
 	{
-		float t = (D + Vector3::Dot(Normal, start)) / dot;
+		// 両端が平面上にあり、交点を計算できない。
+		return false;
+	}
+	else if (
+		(dot_pa >= 0.0 && dot_pb <= 0.0) ||
+		(dot_pa <= 0.0 && dot_pb >= 0.0))
+	{
+		// 内積の片方がプラスで片方がマイナスなので、交差している
+	}
+	else
+	{
+		// 交差していない
+		return false;
+	}
+
+	if (point != nullptr)
+	{
+		Vector3 direction = end - start;
+		float dot = Vector3::Dot(Normal, direction);
+		float t = (D + Vector3::Dot(Normal, start)) / dot;	// 交点とAの距離 : 交点とBの距離
 		(*point) = start - (t * direction);
 	}
 	return true;
